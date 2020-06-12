@@ -1,0 +1,3 @@
+https://github.com/sgall17a/Raspi2_case/blob/master/rasppi2.scad
+https://github.com/sgall17a/Raspi2_case/blob/master/rasppi2.scad
+https://www.thingiverse.com/thing:2985738/files
