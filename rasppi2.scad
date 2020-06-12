@@ -12,6 +12,10 @@ How it works:
     Add lugs, holes and stand offs
 */
 
+//extention
+//TODO: WiP
+
+//box
 board = [85, 56 , 1.3 ];  //dimension of rasp pi
 t     = 1.40;             //Thickness of rasp pi board
 p     = 1.5;              //Thickness of plastic case
@@ -160,12 +164,16 @@ module top(){
 } 
 
 //for designing
+///box
 complete_box();
-
-difference(){
+///extention
+//difference(){
+color("limegreen") difference(){
   translate([-33,0,10])hull_build(box-[50,0,10],rb); //outer shell extention
   translate([p,p,p])hull_build(box-[p+p,p+p,p+p],rb);//smaller box(interior)
-}//diff
+}//diff. extention
+translate([-10,88,18]) union(){translate([-15,0,0]) rotate([90,0,0]) cylinder(r=3, h=111); rotate([90,0,0]) cylinder(r=3, h=111);}
+//}//diff. pipes
 
 //for printing
 //bottom();
