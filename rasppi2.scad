@@ -162,6 +162,8 @@ module top(){
 //for designing
 complete_box();
 
+translate([-33,0,1])hull_build(box,rb); //outer shell extention
+
 //for printing
 //bottom();
 //flip it over to print and move it to print
