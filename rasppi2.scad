@@ -190,6 +190,11 @@ cavity();
 }//diff. pipes and cabling
 
 //for printing
+//top cube cutting
+//TODO
+//bottom cube cutting
+//TODO
+
 //bottom();
 //flip it over to print and move it to print
 //translate([box[0],0,box[2]])rotate([0,180,0])top();
