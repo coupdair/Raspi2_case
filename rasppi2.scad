@@ -164,11 +164,20 @@ module top(){
                     rotate(lug[1]) 
                             cylinder(d=4,h=p,center=true);
         }
-} 
+}//top
+ 
+module cavity()
+{union(){
+  translate([-30,20,11]) cube([55,22,15]);
+  translate([ -5,15,11]) cube([22,33,15]);}
+}//cavity
 
 //for designing
 ///box
+difference(){
 complete_box();
+cavity();
+}//diff. cabling
 
 ///extention
 difference(){
@@ -177,7 +186,8 @@ color("limegreen") difference(){
   translate([p,p,p])hull_build(box-[p+p,p+p,p+p],rb);//smaller box(interior)
 }//diff. extention
 translate([-e_csh,88,e_ch]) union(){translate([-e_cs,0,0]) rotate([90,0,0]) cylinder(r=e_cr, h=111); rotate([90,0,0]) cylinder(r=e_cr, h=111);}
-}//diff. pipes
+cavity();
+}//diff. pipes and cabling
 
 //for printing
 //bottom();
