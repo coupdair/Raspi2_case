@@ -162,7 +162,10 @@ module top(){
 //for designing
 complete_box();
 
-translate([-33,0,1])hull_build(box,rb); //outer shell extention
+difference(){
+  translate([-33,0,10])hull_build(box-[50,0,10],rb); //outer shell extention
+  translate([p,p,p])hull_build(box-[p+p,p+p,p+p],rb);//smaller box(interior)
+}//diff
 
 //for printing
 //bottom();
