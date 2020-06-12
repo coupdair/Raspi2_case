@@ -159,7 +159,11 @@ module top(){
         }
 } 
 
-//complete_box();
+//for designing
+complete_box();
+
+//for printing
 bottom();
 //flip it over to print and move it to print
-//translate([box[0],0,box[2]])rotate([0,180,0])top();  
+translate([box[0],0,box[2]])rotate([0,180,0])top();
+
