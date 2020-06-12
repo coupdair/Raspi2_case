@@ -20,7 +20,7 @@ $fn   = 12;               //roundness of rendering
 rb    = 4;                //roundness of box
 huge  = 200;              // for drilling out holes etc 
 stand_off = 3;            //raise board above bottom plastic
-box   = board + [7 , 7, 20];  //outside dimensions of our case
+box   = board + [7 , 7, 30];  //outside dimensions of our case
 bh    = 10;               //Where to slice box
 d = 3.5;                  //displacement of hole from edge  
 eps = 0.01;               //a very tiny value
@@ -163,7 +163,6 @@ module top(){
 complete_box();
 
 //for printing
-bottom();
+//bottom();
 //flip it over to print and move it to print
-translate([box[0],0,box[2]])rotate([0,180,0])top();
-
+//translate([box[0],0,box[2]])rotate([0,180,0])top();
