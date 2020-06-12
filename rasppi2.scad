@@ -13,7 +13,10 @@ How it works:
 */
 
 //extention
-//TODO: WiP
+e_cr=3; //Cable Radius
+e_cs=12; //Cable Spacing
+e_csh=10; //Cable Shift
+e_ch=18;  //Cable height
 
 //box
 board = [85, 56 , 1.3 ];  //dimension of rasp pi
@@ -166,14 +169,15 @@ module top(){
 //for designing
 ///box
 complete_box();
+
 ///extention
-//difference(){
+difference(){
 color("limegreen") difference(){
   translate([-33,0,10])hull_build(box-[50,0,10],rb); //outer shell extention
   translate([p,p,p])hull_build(box-[p+p,p+p,p+p],rb);//smaller box(interior)
 }//diff. extention
-translate([-10,88,18]) union(){translate([-15,0,0]) rotate([90,0,0]) cylinder(r=3, h=111); rotate([90,0,0]) cylinder(r=3, h=111);}
-//}//diff. pipes
+translate([-e_csh,88,e_ch]) union(){translate([-e_cs,0,0]) rotate([90,0,0]) cylinder(r=e_cr, h=111); rotate([90,0,0]) cylinder(r=e_cr, h=111);}
+}//diff. pipes
 
 //for printing
 //bottom();
