@@ -179,6 +179,9 @@ complete_box();
 cavity();
 }//diff. cabling
 
+//cutting cube
+xy=111;
+difference(){//printing
 ///extention
 difference(){
 color("limegreen") difference(){
@@ -192,8 +195,10 @@ cavity();
 //for printing
 //top cube cutting
 //TODO
+translate([-xy/2,-xy/3,e_ch]) cube([xy,xy,33]);
 //bottom cube cutting
 //TODO
+}//diff. printing
 
 //bottom();
 //flip it over to print and move it to print
