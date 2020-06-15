@@ -169,7 +169,7 @@ module top(){
 module cavity()
 {union(){
   translate([-30,20,11]) cube([55,22,15]);
-  translate([ -5,15,11]) cube([22,33,15]);}
+  translate([ -5,16,11]) cube([22,35,15]);}
 }//cavity
 
 //for designing
