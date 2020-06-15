@@ -200,6 +200,6 @@ translate([-xy/2,-xy/3,e_ch]) cube([xy,xy,33]);
 //TODO
 }//diff. printing
 
-//bottom();
+bottom();
 //flip it over to print and move it to print
 //translate([box[0],0,box[2]])rotate([0,180,0])top();
