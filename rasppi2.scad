@@ -195,9 +195,10 @@ cavity();
 //for printing
 //top cube cutting
 //TODO
-translate([-xy/2,-xy/3,e_ch]) cube([xy,xy,33]);
+//translate([-xy/2,-xy/3,e_ch]) cube([xy,xy,33]);
 //bottom cube cutting
 //TODO
+translate([-xy/2,-xy/3,e_ch-33]) cube([xy,xy,33]);
 }//diff. printing
 
 bottom();
