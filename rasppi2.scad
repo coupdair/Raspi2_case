@@ -172,15 +172,38 @@ module cavity()
   translate([ -5,16,11]) cube([22,35,15]);}
 }//cavity
 
+//cutting cube
+xy=222;
+cs=33;
+module cut_TOP()
+{
+  translate([-xy/2,-xy/3,e_ch]) cube([xy,xy,cs]);
+}//cut_TOP
+module cut_bottom()
+{
+  translate([-xy/2,-xy/3,e_ch-cs]) cube([xy,xy,cs]);
+}//cut_bottom
+//for printing
+module cut()
+{
+//top cube cutting
+cut_TOP();
+//bottom cube cutting
+//cut_bottom();
+}//cut
+
+
+
 //for designing
 ///box
-difference(){
+difference(){//printing
+difference(){//cabling
 complete_box();
 cavity();
 }//diff. cabling
+cut();
+}//diff. printing
 
-//cutting cube
-xy=111;
 difference(){//printing
 ///extention
 difference(){
@@ -191,14 +214,7 @@ color("limegreen") difference(){
 translate([-e_csh,88,e_ch]) union(){translate([-e_cs,0,0]) rotate([90,0,0]) cylinder(r=e_cr, h=111); rotate([90,0,0]) cylinder(r=e_cr, h=111);}
 cavity();
 }//diff. pipes and cabling
-
-//for printing
-//top cube cutting
-//TODO
-//translate([-xy/2,-xy/3,e_ch]) cube([xy,xy,33]);
-//bottom cube cutting
-//TODO
-translate([-xy/2,-xy/3,e_ch-33]) cube([xy,xy,33]);
+cut();
 }//diff. printing
 
 bottom();
