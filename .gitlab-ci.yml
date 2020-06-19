@@ -1,0 +1,54 @@
+stages:
+  - build
+
+#image: debian:latest
+
+#image: bbassett/openscad
+#image: jess/openscad ##BAD
+image: owatte/openscad-gui
+#image: openscad/appimage-x86_64-base
+
+#image: d3v0x/blender-render-cluster
+#image: peterlauri/blender-python
+#image: zocker160/blender ##BAD
+#image: tabaltru/blender ##BAD
+
+before_script:
+  ##make
+  - apt-get update -qq && apt-get install -y make
+#  - apt-get update -qq && apt-get install -y make openscad blender
+  ##docker container
+  - printenv
+rpi:
+  stage: build
+  script:
+  ##imported repository
+  - cd $CI_PROJECT_DIR
+  ##openscad (bin)
+  - which openscad | tee which_openscad.txt
+  - openscad --version | tee openscad_version.txt
+  - mkdir -p /root/.local/share
+#  - openscad --info  #FAIL
+  ##blender (bin)
+#  - which blender
+#  - which blender > which_blender.txt
+#  - blender --version
+  ##make all design
+  - rm -f *.png *.stl
+  - make all
+#  - blender --background  basic.blend -noaudio --render-frame 1
+  - ls
+#  - ls /tmp/
+#  - mv /tmp/0001.png .
+#  - blender --background  basic.blend -noaudio -P convert_format.py -- arg1 arg2
+
+  artifacts:
+    expose_as: 'built in container'
+    paths:
+    - which_openscad.txt
+    - openscad_version.txt
+#    - which_blender.txt
+    - rasppi2_TOP.stl rasppi2_bottom.stl
+#    - 0001.png
+#    - /tmp/0001.png  #FAIL
+
