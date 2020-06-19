@@ -187,9 +187,9 @@ module cut_bottom()
 module cut()
 {
 //top cube cutting
-cut_TOP();
+//cut_TOP();
 //bottom cube cutting
-//cut_bottom();
+cut_bottom();
 }//cut
 
 
@@ -218,6 +218,6 @@ cut();
 }//diff. printing
 
 //feets
-bottom();
+//bottom();
 //flip it over to print and move it to print
 //translate([box[0],0,box[2]])rotate([0,180,0])top();
