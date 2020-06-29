@@ -11,6 +11,9 @@ How it works:
     Slice top and bottom halves.
     Add lugs, holes and stand offs
 */
+//BOX="top";
+//BOX="bottom";
+BOX="full";
 
 //extention
 e_cr=3; //Cable Radius
@@ -186,10 +189,11 @@ module cut_bottom()
 //for printing
 module cut()
 {
+echo("BOX=",BOX);
 //top cube cutting
-cut_TOP();
+if(BOX=="bottom") cut_TOP();
 //bottom cube cutting
-//cut_bottom();
+if(BOX=="top") cut_bottom();
 }//cut
 
 
