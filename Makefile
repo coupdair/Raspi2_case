@@ -1,7 +1,7 @@
 BIN=openscad
 VIEW_SIZE=256,256
 
-all: top
+all: top bottom
 
 %.stl: %.scad
 	$(BIN) -o $@ $<
@@ -9,10 +9,11 @@ all: top
 %.png: %.scad
 	$(BIN) --render --imgsize=$(VIEW_SIZE) -o $@ $<
 
-top: rasppi2.stl rasppi2.png
+#top: rasppi2.stl rasppi2.png
+top: rasppi2.stl
 	mv rasppi2.stl rasppi2_TOP.stl
-	mv rasppi2.png rasppi2_TOP.png
-	display rasppi2_TOP.png &
+#	mv rasppi2.png rasppi2_TOP.png
+#	display rasppi2_TOP.png &
 
 bottom: rasppi2.stl
 	ls

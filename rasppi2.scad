@@ -187,9 +187,9 @@ module cut_bottom()
 module cut()
 {
 //top cube cutting
-//cut_TOP();
+cut_TOP();
 //bottom cube cutting
-cut_bottom();
+//cut_bottom();
 }//cut
 
 
