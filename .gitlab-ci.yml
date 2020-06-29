@@ -48,7 +48,7 @@ rpi:
     - which_openscad.txt
     - openscad_version.txt
 #    - which_blender.txt
-    - rasppi2_TOP.stl rasppi2_bottom.stl
+    - box_TOP.stl box_bottom.stl
 #    - 0001.png
 #    - /tmp/0001.png  #FAIL
 
