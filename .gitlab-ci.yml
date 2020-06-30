@@ -26,7 +26,7 @@ rpi:
   - cd $CI_PROJECT_DIR
   ##openscad (bin)
   - which openscad | tee which_openscad.txt
-  - openscad --version | tee openscad_version.txt
+  - openscad --version 2>&1 | tee openscad_version.txt
   - mkdir -p /root/.local/share
 #  - openscad --info  #FAIL
   ##blender (bin)
@@ -48,7 +48,8 @@ rpi:
     - which_openscad.txt
     - openscad_version.txt
 #    - which_blender.txt
-    - box_TOP.stl box_bottom.stl
+    - box_TOP.stl
+    - box_bottom.stl
 #    - 0001.png
 #    - /tmp/0001.png  #FAIL
 
