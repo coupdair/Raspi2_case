@@ -8,6 +8,10 @@ Raspberry Pi2 case in openscad
 
 `make design`
 
+![TOP](box_TOP.png)
+
+![bottom](box_bottom.png)
+
 # print
 
 ## all
