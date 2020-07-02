@@ -176,6 +176,26 @@ module top(){
                             cylinder(d=4,h=p,center=true);
         }
 }//top
+
+///footing
+module foot(r=5, w=34,h=12,d=12)
+{hull()
+ {
+  sphere(r);
+  translate([w,0,0]) sphere(r);
+  translate([0,h,0]) sphere(r);
+  translate([w,h,0]) sphere(r);
+  translate([0,0,-d]) sphere(r);
+  translate([w,0,-d]) sphere(r);
+//  translate([w,h,d]) sphere(r);
+ };//hull
+}//foot
+
+module feet(step=56, r=5, w=34,h=12,d=12)
+{
+  translate([0,r,0]) mirror() foot(r,w,h,d);
+  mirror([0,1,0]) translate([-w,r-step,0]) foot(r,w,h,d);
+}//feet
  
 module cavity()
 {union(){
@@ -216,15 +236,25 @@ cavity();
 cut();
 }//diff. printing
 
+//feet
+w=34;
+h=9;
+d=9;
 difference(){//printing
 ///extention
 difference(){
 color("limegreen") difference(){
-  translate([-33,0,10])hull_build(box-[50,0,10],rb); //outer shell extention
+  union(){
+    translate([-33,0,10])hull_build(box-[50,0,10],rb); //outer shell extention
+    translate([5,0,13]) feet(box[1], rb, w,h,d);
+  }//cabling and feet
   translate([p,p,p])hull_build(box-[p+p,p+p,p+p],rb);//smaller box(interior)
 }//diff. extention
-translate([-e_csh,88,e_ch]) union(){translate([-e_cs,0,0]) rotate([90,0,0]) cylinder(r=e_cr, h=111); rotate([90,0,0]) cylinder(r=e_cr, h=111);}
+//cable holes
+#translate([-e_csh,88,e_ch]) union(){translate([-e_cs,0,0]) rotate([90,0,0]) cylinder(r=e_cr, h=111); rotate([90,0,0]) cylinder(r=e_cr, h=111);}
+//cabling cavity
 cavity();
+//screw holes
 }//diff. pipes and cabling
 cut();
 }//diff. printing
@@ -233,31 +263,4 @@ cut();
 //bottom();
 //flip it over to print and move it to print
 //translate([box[0],0,box[2]])rotate([0,180,0])top();
-
-
-///foot
-module foot(r=5, w=34,h=12,d=12)
-{hull()
- {
-  sphere(r);
-  translate([w,0,0]) sphere(r);
-  translate([0,h,0]) sphere(r);
-  translate([w,h,0]) sphere(r);
-  translate([0,0,-d]) sphere(r);
-  translate([w,0,-d]) sphere(r);
-//  translate([w,h,d]) sphere(r);
- };//hull
-}//foot
-
-module feets(step=56, r=5, w=34,h=12,d=12)
-{
-  translate([0,r,0]) mirror() foot(r,w,h,d);
-  mirror([0,1,0]) translate([-w,r-step,0]) foot(r,w,h,d);
-}//feets
-
-//feets
-w=34;
-h=12;
-d=12;
-translate([5,0,16]) feets(box[1], rb, w,h,d);
 
