@@ -231,8 +231,14 @@ if(BOX=="bottom") cut_TOP();
 if(BOX=="top") cut_bottom();
 }//cut
 
+//feet
+w=34;
+h=9;
+//screw
+s=16;
+m=10;
 
-
+union(){
 //for designing
 ///box
 difference(){//printing
@@ -249,12 +255,6 @@ for (q=holes)
 cut();
 }//diff. printing
 
-//feet
-w=34;
-h=9;
-//screw
-s=16;
-m=10;
 difference(){//printing
 ///extention
 difference(){
@@ -274,6 +274,8 @@ translate([-s,m,-eps]) union(){cylinder(r=s_h, h=huge); translate([0,box[1]-2*m,
 }//diff. pipes and cabling
 cut();
 }//diff. printing
+
+}//union for designing
 
 //old feets
 //bottom();
