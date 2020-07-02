@@ -13,7 +13,7 @@ How it works:
 */
 
 ///Version
-version="v0.0.4f";
+version="v0.0.4";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
