@@ -11,6 +11,14 @@ How it works:
     Slice top and bottom halves.
     Add lugs, holes and stand offs
 */
+
+///Version
+version="v0.0.1";
+
+linear_extrude(4) text("Text");
+translate([0,12,0]) linear_extrude(4) text(version);
+
+///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
 //BOX="bottom";
 BOX="full";
@@ -225,3 +233,5 @@ cut();
 //bottom();
 //flip it over to print and move it to print
 //translate([box[0],0,box[2]])rotate([0,180,0])top();
+
+
