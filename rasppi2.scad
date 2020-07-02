@@ -13,10 +13,10 @@ How it works:
 */
 
 ///Version
-version="v0.0.3d";
+version="v0.0.3";
 
-linear_extrude(4) text("Text");
-translate([0,12,0]) linear_extrude(4) text(version);
+//version (from OpenSCAD.2015.03)
+translate([0,123,0]) linear_extrude(4) text(version);
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -70,14 +70,18 @@ SD    =  [[-3  ,19.5 ,-2.5] ,[14   ,17  , 2.5 ] ,[-16,   0,    -4] , [6,   0,  4
 echidna = [micro,hdmi,camera,audio,ether,usb1,usb2,gpio,display,SD];  
 
 shift =[p+g,p+g,p+stand_off];  //plastic + gap at edge and height of screw pad
-holes =  [[p+g+d, p+g+d], [65, p+g+d], [65, 56], [p+g+d, 56]]  ;
+//holes
+gxy=p+g+d;
+wxy=65;
+hxy=board[1];
+holes =  [[gxy, gxy], [wxy, gxy], [wxy, hxy], [gxy, hxy]]  ;
 toplugs =[
           [[box[0]*4/5,p+p/2, box[2]-bh],[90,0,0]],
           [[box[0]*4/5,box[1]-p-p/2,bh], [90,0,0]],
           [[p+p/2,box[1]*3/4-p-p,bh],[0,90,0]],
           [[p+p/2,box[1]/4-p-p,bh],[0,90,0]]
-          ];        
- bottomlug =[[-p/2,box[1]/2,bh],[0,90,0]];
+          ];
+bottomlug =[[-p/2,box[1]/2,bh],[0,90,0]];
 
 //Utility module to make a solid box with rounded corners
 module hull_build(box,r){
@@ -239,7 +243,7 @@ cavity();
 for (q=holes)
 {
   translate([q[0],q[1],0]) 
-#    cylinder(r=1,h=huge,center=true); 
+    cylinder(r=1,h=huge,center=true); 
 }//holes
 }//diff. cabling
 cut();
@@ -248,7 +252,6 @@ cut();
 //feet
 w=34;
 h=9;
-d=9;
 //screw
 s=16;
 m=10;
@@ -258,7 +261,7 @@ difference(){
 color("limegreen") difference(){
   union(){
     translate([-33,0,10])hull_build(box-[50,0,10],rb); //outer shell extention
-    translate([5,0,13]) feet(box[1], rb, w,h,d);
+    translate([5,0,13]) feet(box[1], rb, w,h,h);
   }//cabling and feet
   translate([p,p,p])hull_build(box-[p+p,p+p,p+p],rb);//smaller box(interior)
 }//diff. extention
@@ -277,3 +280,4 @@ cut();
 //flip it over to print and move it to print
 //translate([box[0],0,box[2]])rotate([0,180,0])top();
 
+//color("blue") square(10);
