@@ -13,7 +13,7 @@ How it works:
 */
 
 ///Version
-version="v0.0.2";
+version="v0.0.3d";
 
 linear_extrude(4) text("Text");
 translate([0,12,0]) linear_extrude(4) text(version);
@@ -95,7 +95,7 @@ module hull_build(box,r){
                     }  
               }   
          }  
-}
+}//hull_build
 
 
 module complete_box(){
@@ -110,7 +110,7 @@ module complete_box(){
                     cube(i[1]+ i[3] + embiggen);
                         }
                 }
-   }
+   }//complete_box
    
 module stand_off() {
     difference(){
@@ -130,7 +130,7 @@ module stand_off() {
         }
     }
     }
-}
+}//stand_off
 
 module top_holes(){
     difference(){
@@ -147,7 +147,7 @@ module top_holes(){
         }
     }
     }
-}
+}//top_holes
 
 
 module bottom(){
@@ -161,7 +161,7 @@ difference() {
         translate(bottomlug[0])
             rotate(bottomlug[1])
                 cylinder(d=4,h=p,center=true);
-}
+}//bottom
 
 module top(){
 
@@ -235,6 +235,12 @@ difference(){//printing
 difference(){//cabling
 complete_box();
 cavity();
+//holes for board
+for (q=holes)
+{
+  translate([q[0],q[1],0]) 
+#    cylinder(r=1,h=huge,center=true); 
+}//holes
 }//diff. cabling
 cut();
 }//diff. printing
@@ -266,7 +272,7 @@ translate([-s,m,-eps]) union(){cylinder(r=s_h, h=huge); translate([0,box[1]-2*m,
 cut();
 }//diff. printing
 
-//feets
+//old feets
 //bottom();
 //flip it over to print and move it to print
 //translate([box[0],0,box[2]])rotate([0,180,0])top();
