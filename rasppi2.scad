@@ -236,17 +236,28 @@ cut();
 
 
 ///foot
-r=5;
-w=34;
-h=12;
-d=12;
-! hull()
-{
+module foot(r=5, w=34,h=12,d=12)
+{hull()
+ {
   sphere(r);
   translate([w,0,0]) sphere(r);
   translate([0,h,0]) sphere(r);
   translate([w,h,0]) sphere(r);
-  translate([0,0,d]) sphere(r);
-  translate([w,0,d]) sphere(r);
+  translate([0,0,-d]) sphere(r);
+  translate([w,0,-d]) sphere(r);
 //  translate([w,h,d]) sphere(r);
-};//hull
+ };//hull
+}//foot
+
+module feets(step=56, r=5, w=34,h=12,d=12)
+{
+  translate([0,r,0]) mirror() foot(r,w,h,d);
+  mirror([0,1,0]) translate([-w,r-step,0]) foot(r,w,h,d);
+}//feets
+
+//feets
+w=34;
+h=12;
+d=24;
+feets(box[1], rb, w,h,d);
+
