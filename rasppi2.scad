@@ -13,7 +13,7 @@ How it works:
 */
 
 ///Version
-version="v0.0.4e";
+version="v0.0.4f";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -274,8 +274,10 @@ cut();
 }//diff. printing
 
 }//union for designing
+//title
+translate([10,24,p-0.5]) linear_extrude(4) text("RPi=Relay");
 //version (from OpenSCAD.2015.03)
-translate([10,12,1]) linear_extrude(4) text(version);
+translate([10,12,p-0.5]) linear_extrude(4) text(version);
 }//diff for versioning
 
 //old feets
