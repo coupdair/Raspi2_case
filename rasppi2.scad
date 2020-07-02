@@ -13,7 +13,7 @@ How it works:
 */
 
 ///Version
-version="v0.0.1";
+version="v0.0.2d";
 
 linear_extrude(4) text("Text");
 translate([0,12,0]) linear_extrude(4) text(version);
@@ -22,6 +22,9 @@ translate([0,12,0]) linear_extrude(4) text(version);
 //BOX="top";
 //BOX="bottom";
 BOX="full";
+
+//screw
+s_h=1; //hole
 
 //extention
 e_cr=3; //Cable Radius
@@ -251,10 +254,11 @@ color("limegreen") difference(){
   translate([p,p,p])hull_build(box-[p+p,p+p,p+p],rb);//smaller box(interior)
 }//diff. extention
 //cable holes
-#translate([-e_csh,88,e_ch]) union(){translate([-e_cs,0,0]) rotate([90,0,0]) cylinder(r=e_cr, h=111); rotate([90,0,0]) cylinder(r=e_cr, h=111);}
+translate([-e_csh,88,e_ch]) union(){translate([-e_cs,0,0]) rotate([90,0,0]) cylinder(r=e_cr, h=huge); rotate([90,0,0]) cylinder(r=e_cr, h=huge);}
 //cabling cavity
 cavity();
 //screw holes
+#translate([-16,0,-eps]) cylinder(r=s_h, h=huge);
 }//diff. pipes and cabling
 cut();
 }//diff. printing
