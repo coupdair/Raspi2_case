@@ -235,3 +235,18 @@ cut();
 //translate([box[0],0,box[2]])rotate([0,180,0])top();
 
 
+///foot
+r=5;
+w=34;
+h=12;
+d=12;
+! hull()
+{
+  sphere(r);
+  translate([w,0,0]) sphere(r);
+  translate([0,h,0]) sphere(r);
+  translate([w,h,0]) sphere(r);
+  translate([0,0,d]) sphere(r);
+  translate([w,0,d]) sphere(r);
+//  translate([w,h,d]) sphere(r);
+};//hull
