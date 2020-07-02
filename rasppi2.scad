@@ -13,10 +13,7 @@ How it works:
 */
 
 ///Version
-version="v0.0.4d";
-
-//version (from OpenSCAD.2015.03)
-translate([0,123,0]) linear_extrude(4) text(version);
+version="v0.0.4e";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -238,6 +235,7 @@ h=9;
 s=16;
 m=10;
 
+difference(){//versioning
 union(){
 //for designing
 ///box
@@ -276,6 +274,9 @@ cut();
 }//diff. printing
 
 }//union for designing
+//version (from OpenSCAD.2015.03)
+translate([10,12,1]) linear_extrude(4) text(version);
+}//diff for versioning
 
 //old feets
 //bottom();
