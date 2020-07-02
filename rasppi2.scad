@@ -258,6 +258,6 @@ module feets(step=56, r=5, w=34,h=12,d=12)
 //feets
 w=34;
 h=12;
-d=24;
-feets(box[1], rb, w,h,d);
+d=12;
+translate([5,0,16]) feets(box[1], rb, w,h,d);
 
