@@ -243,6 +243,9 @@ cut();
 w=34;
 h=9;
 d=9;
+//screw
+s=16;
+m=10;
 difference(){//printing
 ///extention
 difference(){
@@ -258,7 +261,7 @@ translate([-e_csh,88,e_ch]) union(){translate([-e_cs,0,0]) rotate([90,0,0]) cyli
 //cabling cavity
 cavity();
 //screw holes
-#translate([-16,0,-eps]) cylinder(r=s_h, h=huge);
+#translate([-s,m,-eps]) union(){cylinder(r=s_h, h=huge); translate([0,box[1]-2*m,0]) cylinder(r=s_h, h=huge);}
 }//diff. pipes and cabling
 cut();
 }//diff. printing
