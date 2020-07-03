@@ -24,7 +24,7 @@ jobs:
         blender --version 2>&1 | tee blender_version.txt ;
 
     - name: upload
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: artifacts
         path: *blender*.txt
