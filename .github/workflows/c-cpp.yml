@@ -2,7 +2,7 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ dev_GitHub_CI ]
 
 jobs:
   build:
@@ -12,5 +12,5 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: make
-      run: uname -a
+      run: uname -a ; which openscad | tee which_openscad.txt ; openscad --version 2>&1 | tee openscad_version.txt
 
