@@ -7,10 +7,10 @@ on:
 jobs:
   build:
 
-    runs-on: debian
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
     - name: make
-      run: uname -a ; apt-get update -qq ; apt-get install -y  openscad ; which openscad | tee which_openscad.txt ; openscad --version 2>&1 | tee openscad_version.txt
+      run: uname -a ; make --version ; apt-get update -qq ; apt-get install -y  openscad ; which openscad | tee which_openscad.txt ; openscad --version 2>&1 | tee openscad_version.txt
 
