@@ -27,6 +27,6 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: artifacts
-        path: which_blender.txt ;
-          blender_version.txt ;
+        path: which_blender.txt,
+          blender_version.txt,
 
