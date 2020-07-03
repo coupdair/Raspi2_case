@@ -22,7 +22,10 @@ jobs:
         make --version
         which blender          | tee which_blender.txt
         blender --version 2>&1 | tee blender_version.txt
-      artifacts: which_blender.txt
-        blender_version.txt
 
+    - name: upload
+      uses: actions/upload-artifact@v1
+      with:
+        name: artifacts
+        path: blender_version.txt
 
