@@ -4,6 +4,8 @@ Raspberry Pi2 case in openscad
 
 3D printable Raspberry Pi case.
 
+![3D view](3Dview.png)
+
 # design
 
 `make design`
