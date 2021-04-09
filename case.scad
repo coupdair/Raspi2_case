@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.5l";
+version="v0.0.5m";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -47,8 +47,6 @@ translate([(65-85)/2,0,21+12]) LEMO_PCB();
 
 //case
 ///base box
-//%translate([-92/2,-62/2,-4.321]) cube([92,62,16.4]);
-bbox(92,62,16.4);
-
+bbox(d=16.4);
 ///lower box
-translate([0,0,16.4]) bbox(92,62,12.5);
+translate([0,0,16.4]) bbox(d=12.5);
