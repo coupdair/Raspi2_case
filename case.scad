@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.5i";
+version="v0.0.5k";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -31,7 +31,9 @@ pi4();
 
 //PoE HAT
 translate([(65-85)/2,0,21]) WS_PoE_PCB();
+//LEMO HAT
+translate([(65-85)/2,0,21+12]) LEMO_PCB();
 
 //case
 ///base box
-%translate([0,0,-4.321]) cube([92,62,16.4]);
+%translate([-92/2,-62/2,-4.321]) cube([92,62,16.4]);
