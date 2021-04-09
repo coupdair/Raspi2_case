@@ -1,7 +1,8 @@
 BIN=openscad
 VIEW_SIZE=256,256
 
-all: version top bottom
+#all: version top bottom
+all: version
 
 #%.stl: %.scad
 #	$(BIN) -o $@ $<
