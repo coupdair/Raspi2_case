@@ -8,10 +8,11 @@ multiple layer case
 */
 
 ///use library.scad
+//see https://github.com/coupdair/library.scad
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.5g";
+version="v0.0.5h";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
