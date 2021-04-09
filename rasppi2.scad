@@ -1,9 +1,9 @@
-/*  RASPBERRY PI2 case
+/*  RASPBERRY PI4 case
 -- Parametric as below
 -- Uses a set of measurements for box cutouts for devices
 -- Rounded corners
 */
-/* Rasberry Pi2 box (should fit B+ as well)
+/* Rasberry Pi4 box
 How it works:
     Make a rounded box
     Subtract the interior 
@@ -13,7 +13,7 @@ How it works:
 */
 
 ///Version
-version="v0.0.4";
+version="v0.0.5d";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
