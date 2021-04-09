@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.5s";
+version="v0.0.5t";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -60,6 +60,16 @@ module lemo(l=22,r=3.5, x=6,y=16,z=33.5, dx=0,dy=0)
   translate([x,y+dy,z+dx]) rotate([0,90,0]) cylinder(r=r, h=l);
 }//lemo
 
+//button
+/*
+  l: length
+  h: height
+*/
+module button(l=12,r=3.5, x=6,y=16,z=33.5, dx=0,dy=0)
+{
+  translate([x,y+dy,z+dx]) rotate([0,90,0]) cylinder(r=r, h=l);
+}//button
+
 //RPi4
 pi4();
 
@@ -89,6 +99,7 @@ translate([(72-92)/2,0,16.4+7]) bbox(w=72, d=2.5);
 ///cover box
 %translate([(72-92)/2,0,16.4+7+2.5+12]) obox(w=72,d=10);
 
+//lemo
 color("gray")
 {
 //lemo();
@@ -100,3 +111,9 @@ lemo(dx=-5,dy=-8);
 lemo(dx=5,dy=-32);
 lemo(dx=-5,dy=-32);
 }//lemo
+
+//button
+color("red")
+{
+  button();
+}//button
