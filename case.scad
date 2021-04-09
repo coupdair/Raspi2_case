@@ -7,6 +7,9 @@ multiple layer case
 
 */
 
+///use library.scad
+use <../library.scad/raspberrypi.scad>
+
 ///Version
 version="v0.0.5e";
 
@@ -15,4 +18,5 @@ version="v0.0.5e";
 //BOX="bottom";
 BOX="full";
 
-///use 
+
+pi4();
