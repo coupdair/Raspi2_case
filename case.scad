@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.5p";
+version="v0.0.5q";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -51,8 +51,8 @@ bbox(d=16.4);
 ///lower box
 translate([0,0,16.4]) bbox(d=7);
 ///middle box
-translate([0,0,16.4+7]) bbox(d=2.5);
+translate([(72-92)/2,0,16.4+7]) bbox(w=72, d=2.5);
 ///upper box
-translate([0,0,16.4+7+2.5]) bbox(d=12);
+translate([(72-92)/2,0,16.4+7+2.5]) bbox(w=72,d=12);
 ///cover box
-translate([0,0,16.4+7+2.5+12]) bbox(d=10);
+translate([(72-92)/2,0,16.4+7+2.5+12]) bbox(w=72,d=10);
