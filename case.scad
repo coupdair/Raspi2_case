@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.5r";
+version="v0.0.5s";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -35,15 +35,18 @@ module bbox(w=92,h=62,d=16.4)
   w: width
   h: height
   d: depth
+  o: oLED
+  m: margin
 */
-module obox(w=92,h=62,d=16.4)
+module obox(w=92,h=62,d=16.4, wo=26,ho=11, m=1,hm=3)
 {
   translate([-w/2,-h/2,-5])
   difference()
   {
-    //oLED hole
-    translate([(72-92)/2,0,16.4+7+2.5]) cube([10,10,10]);
+    //box
     cube([w,h,d]);
+    //oLED hole
+    translate([18-m,-m,-m]) cube([wo+2*m,ho+2*m+hm,d+2*m]);
   }
 }
 
@@ -71,6 +74,6 @@ translate([(65-85)/2,0,21+12]) LEMO_PCB();
 %translate([(72-92)/2,0,16.4+7]) bbox(w=72, d=2.5);
 
 ///upper box
-translate([(72-92)/2,0,16.4+7+2.5]) bbox(w=72,d=12);
+%translate([(72-92)/2,0,16.4+7+2.5]) obox(w=72,d=12);
 ///cover box
-translate([(72-92)/2,0,16.4+7+2.5+12]) bbox(w=72,d=10);
+%translate([(72-92)/2,0,16.4+7+2.5+12]) obox(w=72,d=10);
