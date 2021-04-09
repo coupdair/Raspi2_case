@@ -1,6 +1,6 @@
-# Raspi2_case
+# RPi4_case
 
-Raspberry Pi2 case in openscad
+Raspberry Pi4 case in openscad
 
 3D printable Raspberry Pi case.
 
