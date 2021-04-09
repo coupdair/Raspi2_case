@@ -112,11 +112,10 @@ translate([(72-92)/2,0,16.4+7+2.5+12]) obox(w=72,d=10);
 color("gray")
 {
 //lemo();
-lemo(dx=5,dy=8);
-lemo(dx=-5,dy=8);
-lemo(dx=5,dy=-8);
-lemo(dx=-5,dy=-8);
-
+lemo(dx=5,dy=0);
+lemo(dx=-5,dy=0);
+lemo(dx=5,dy=-16);
+lemo(dx=-5,dy=-16);
 lemo(dx=5,dy=-32);
 lemo(dx=-5,dy=-32);
 }//lemo
