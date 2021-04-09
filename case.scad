@@ -18,8 +18,12 @@ version="v0.0.5e";
 //BOX="bottom";
 BOX="full";
 
-
+//RPi4
 pi4();
 
-//margins
-translate([0,0,6.54321]) piB_PCB();
+//PCB and component margins
+%hull()
+{
+  piB_PCB();
+  translate([0,0,6.54321]) piB_PCB();
+}
