@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.6i";
+version="v0.0.6";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -76,7 +76,7 @@ module button(l=10,r=3,b=5,h=2.54,bh=1.23, x=-16,y=-12,z=33.5, dx=0,dy=0)
 /*
   r: radius
 */
-module led(r=3, x=-16,y=10,z=42, dx=0,dy=0)
+module led(r=3, x=-16,y=0,z=42, dx=0,dy=0)
 {
   translate([x+dx,y+dy,z]) sphere(r=r);
 }//led
@@ -86,7 +86,7 @@ module led(r=3, x=-16,y=10,z=42, dx=0,dy=0)
   l: length
   h: height
 */
-module serial(w=10,h=2.5,d=14, space=3, x=5,y=24.5,z=34.5)
+module serial(w=10,h=2.5,d=14, space=-0.3, x=7.5-42.5,y=24.5,z=34.5)
 {
   color("gray") translate([x,y,z+space]) cube([w,h,d]);
 }//serial
@@ -121,7 +121,7 @@ translate([(72-92)/2,0,16.4+7]) bbox(w=72, d=2.5);
 translate([(72-92)/2,0,16.4+7+2.5]) obox(w=72,d=12);
 
 ///cover box
-%translate([(72-92)/2,0,16.4+7+2.5+12]) obox(w=72,d=10);
+translate([(72-92)/2,0,16.4+7+2.5+12]) obox(w=72,d=10);
 
 //lemo
 color("gray")
@@ -150,4 +150,12 @@ led(dx=5);
 led(dx=-5);
 led(dx=15);
 led(dx=-15);
+}//led
+
+//power led
+color("orange")
+{
+//led();
+led(dx=-22, dy=16);
+led(dx=-22, dy=8);
 }//led
