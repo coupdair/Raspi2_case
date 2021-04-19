@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.6d";
+version="v0.0.6e";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -113,11 +113,8 @@ color("gray")
 {
 //lemo();
 lemo(dx=5,dy=0);
-lemo(dx=-5,dy=0);
 lemo(dx=5,dy=-16);
-lemo(dx=-5,dy=-16);
 lemo(dx=5,dy=-32);
-lemo(dx=-5,dy=-32);
 }//lemo
 
 //button
