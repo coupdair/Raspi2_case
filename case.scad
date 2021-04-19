@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.6f";
+version="v0.0.6g";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -66,9 +66,10 @@ module lemo(l=17.5,r=3.5,b=7, x=9,y=16,z=33, dx=0,dy=0)
   l: length
   h: height
 */
-module button(l=10,r=3, x=-16,y=-12,z=33.5, dx=0,dy=0)
+module button(l=10,r=3,b=5,h=2.54,bh=1.23, x=-16,y=-12,z=33.5, dx=0,dy=0)
 {
-  translate([x+dx,y+dy,z]) cylinder(r=r, h=l);
+  translate([x+dx,y+dy,z+h+bh]) cylinder(r=r, h=l-h-bh);
+  translate([x-b/2+dx,y-b/2+dy,z]) cube([b,b,h]);
 }//button
 
 //LED
