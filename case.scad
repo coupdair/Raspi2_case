@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.6";
+version="v0.0.7d";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -76,7 +76,7 @@ module button(l=10,r=3,b=5,h=2.54,bh=1.23, x=-16,y=-12,z=33.5, dx=0,dy=0)
 /*
   r: radius
 */
-module led(r=3, x=-16,y=0,z=42, dx=0,dy=0)
+module led(r=1.5, x=-16,y=0,z=43, dx=0,dy=0)
 {
   translate([x+dx,y+dy,z]) sphere(r=r);
 }//led
@@ -121,7 +121,7 @@ translate([(72-92)/2,0,16.4+7]) bbox(w=72, d=2.5);
 translate([(72-92)/2,0,16.4+7+2.5]) obox(w=72,d=12);
 
 ///cover box
-translate([(72-92)/2,0,16.4+7+2.5+12]) obox(w=72,d=10);
+%translate([(72-92)/2,0,16.4+7+2.5+12]) obox(w=72,d=10);
 
 //lemo
 color("gray")
