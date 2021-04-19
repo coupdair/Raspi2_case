@@ -10,26 +10,28 @@ Raspberry Pi4 case in openscad
 
 `make design`
 
-![TOP](box_TOP.png)
+![3D transparent view](3Dview_tranparent.png)
 
-![bottom](box_bottom.png)
+![cover](box_cover.png)
+
+![upper](box_upper.png)
+
+![middle](box_middle.png)
+
+![lower](box_lower.png)
+
+![commercial base](base_box.png)
 
 # print
 
 ## all
 
-make both top and bottom STL files
+make STL files
 
 `make`
 
-## TOP
+## stack
 
-make only top STL file
+make only SLICE=[lower,middle,upper,cover] STL file
 
-`make top`
-
-## bottom
-
-make only bottom STL file
-
-`make bottom`
+`make $SLICE`, e.g. `make cover`
