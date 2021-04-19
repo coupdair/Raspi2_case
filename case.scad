@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.5";
+version="v0.0.6d";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -55,7 +55,7 @@ module obox(w=92,h=62,d=16.4, wo=26,ho=11, m=0.5,hm=2.5)
   l: length
   h: height
 */
-module lemo(l=22,r=3.5, x=6,y=16,z=33.5, dx=0,dy=0)
+module lemo(l=17.5,r=3.5, x=9,y=16,z=33.5, dx=0,dy=0)
 {
   translate([x,y+dy,z+dx]) rotate([0,90,0]) cylinder(r=r, h=l);
 }//lemo
