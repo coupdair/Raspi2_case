@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.6e";
+version="v0.0.6f";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -55,9 +55,10 @@ module obox(w=92,h=62,d=16.4, wo=26,ho=11, m=0.5,hm=2.5)
   l: length
   h: height
 */
-module lemo(l=17.5,r=3.5, x=9,y=16,z=33.5, dx=0,dy=0)
+module lemo(l=17.5,r=3.5,b=7, x=9,y=16,z=33, dx=0,dy=0)
 {
   translate([x,y+dy,z+dx]) rotate([0,90,0]) cylinder(r=r, h=l);
+  translate([x,y-b/2+dy,z-b/2+dx]) cube([b,b,b]);
 }//lemo
 
 //button
@@ -106,14 +107,14 @@ translate([(72-92)/2,0,16.4+7]) bbox(w=72, d=2.5);
 translate([(72-92)/2,0,16.4+7+2.5]) obox(w=72,d=12);
 
 ///cover box
-translate([(72-92)/2,0,16.4+7+2.5+12]) obox(w=72,d=10);
+%translate([(72-92)/2,0,16.4+7+2.5+12]) obox(w=72,d=10);
 
 //lemo
 color("gray")
 {
 //lemo();
 lemo(dx=5,dy=0);
-lemo(dx=5,dy=-16);
+ lemo(dx=5,dy=-16);
 lemo(dx=5,dy=-32);
 }//lemo
 
