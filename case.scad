@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.6g";
+version="v0.0.6h";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -81,8 +81,21 @@ module led(r=3, x=-16,y=10,z=42, dx=0,dy=0)
   translate([x+dx,y+dy,z]) sphere(r=r);
 }//led
 
+//UART
+/*
+  l: length
+  h: height
+*/
+module serial(w=10,h=2.5,d=14, space=3, x=5,y=24.5,z=34.5)
+{
+  color("gray") translate([x,y,z+space]) cube([w,h,d]);
+}//serial
+
 //RPi4
 pi4();
+
+//UART
+serial();
 
 //PCB and component margins
 %hull()
