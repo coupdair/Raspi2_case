@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.8e";
+version="v0.0.8f";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -177,7 +177,8 @@ translate([(72-92)/2,0,16.4+7]) bbox(w=72, d=2.5);
 ///cover box
 %translate([(72-92)/2,0,16.4+7+2.5+12]) obox(w=72,d=10);
 
-!projection(){// // // // //
+module devices()
+{
 
 //UART
 serial();
@@ -225,4 +226,9 @@ led(dx=-22, dy=16);
 led(dx=-22, dy=8);
 }//led
 
+}//devices
+
+!projection(){// // // // //
+devices();
+translate([100,0,0]) LEMO_PCB();
 }//projection// // // // //
