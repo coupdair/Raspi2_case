@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.7g";
+version="v0.0.7i";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -96,10 +96,32 @@ module serial(w=3*2.5,h=2.5,d=14, space=-0.3, x=7.5+2*2.5-42.5,y=24.5,z=34.5)
   l: length
   h: height
 */
-module i2c_header(pins=3, rows=2, x=19,y=4.5,z=34.5+1)
+module i2c_header(pins=3, rows=2, x=19,y=4.25,z=34.5+1)
 {
   translate([x,y,z]) rotate([90,0,90]) header(pins, rows);
 }//i2c_header
+
+///upper box
+module box_upper(tx=36-0.25,ty=-7/2,tz=5)
+{
+  translate([(72-92)/2,0,16.4+7+2.5])
+  {
+    //bb
+    obox(w=72,d=12);
+    //labels
+    ///I2C//data/clock
+    color("Violet") translate([tx,ty,tz]) rotate([0,90,0])
+      cube([10,16+2*(7/2),0.5]);//bb
+//      linear_extrude(height = 0.5) text(text="I2C\ndata clock");
+    ///reset
+    color("Violet") translate([tx,ty-16-4,tz]) rotate([0,90,0])
+      cube([5,16,0.5]);//bb
+//    linear_extrude(height = 0.5) text(text="reset");
+  }
+}//box_upper
+
+
+
 
 //RPi4
 pi4();
@@ -131,7 +153,7 @@ translate([0,0,16.4]) bbox(d=7);
 translate([(72-92)/2,0,16.4+7]) bbox(w=72, d=2.5);
 
 ///upper box
-translate([(72-92)/2,0,16.4+7+2.5]) obox(w=72,d=12);
+box_upper();
 
 ///cover box
 %translate([(72-92)/2,0,16.4+7+2.5+12]) obox(w=72,d=10);
