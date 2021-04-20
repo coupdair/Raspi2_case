@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.7j";
+version="v0.0.7";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -76,9 +76,13 @@ module button(l=10,r=3,b=5,h=2.54,bh=1.23, x=-16,y=-12,z=33.5, dx=0,dy=0)
 /*
   r: radius
 */
-module led(r=1.5, x=-16,y=0,z=43, dx=0,dy=0)
+module led(r=1.5,h=9, x=-16,y=0,z=43, dx=0,dy=0, space=0.123)
 {
-  translate([x+dx,y+dy,z]) sphere(r=r);
+  translate([x+dx,y+dy,z])
+  {
+    sphere(r=r);
+    translate([0,0,-h-space]) cylinder(r=1.23*r, h=h);
+  }
 }//led
 
 //UART
@@ -91,7 +95,7 @@ module serial(w=3*2.5,h=2.5,d=14, space=-0.3, x=7.5+2*2.5-42.5,y=24.5,z=34.5)
   color("gray") translate([x,y,z+space]) cube([w,h,d]);
 }//serial
 
-//I2C header
+//I2C header driver
 /*
   l: length
   h: height
@@ -100,6 +104,30 @@ module i2c_header(pins=3, rows=2, x=19,y=4.25,z=34.5+1)
 {
   translate([x,y,z]) rotate([90,0,90]) header(pins, rows);
 }//i2c_header
+
+//I2C header software
+/*
+  l: length
+  h: height
+*/
+module i2c_headerS(pins=4, rows=1, x=-12,y=4.25,z=34.5-2.5)
+{
+  translate([x,y,z]) rotate([270,0,90]) header(pins, rows);
+}//i2c_headerS
+
+///lower box
+module box_lower(tx=34,ty=14,tz=2-0.25)
+{
+  translate([0,0,16.4]) 
+  {
+    //bb
+    bbox(d=7);
+    ///PoE
+    color("Violet") translate([tx,ty,tz]) rotate([0,0,0])
+      cube([10,10,0.5]);//bb
+//      linear_extrude(height = 0.5) text(text="PoE");
+  }
+}//box_lower
 
 ///upper box
 module box_upper(tx=36-0.25,ty=-7/2,tz=5)
@@ -122,15 +150,17 @@ module box_upper(tx=36-0.25,ty=-7/2,tz=5)
 
 
 
-
 //RPi4
 pi4();
 
 //UART
 serial();
 
-//I2C header
+//I2C#1 header
 i2c_header();
+
+//I2C#3 header
+i2c_headerS();
 
 //PCB and component margins
 %hull()
@@ -148,15 +178,13 @@ LEMO_HAT(withHeader=true);
 ///base box
 bbox(d=16.4);
 ///lower box
-translate([0,0,16.4]) bbox(d=7);
+box_lower();
 ///middle box
 translate([(72-92)/2,0,16.4+7]) bbox(w=72, d=2.5);
-
 ///upper box
-%box_upper();
-
+box_upper();
 ///cover box
-%translate([(72-92)/2,0,16.4+7+2.5+12]) obox(w=72,d=10);
+translate([(72-92)/2,0,16.4+7+2.5+12]) obox(w=72,d=10);
 
 //lemo
 color("gray")
