@@ -11,6 +11,7 @@ all: version
 	$(BIN) --render --imgsize=$(VIEW_SIZE) -o $@ $<
 version:
 	grep version case.scad | head -n 1 | cut -d'=' -f2 | sed "s/\"//g;s/;//g" | tee VERSION
+	openscad --version | cut -d' ' -f3 | tee -a VERSION
 
 #top: case.stl case.png
 top: version

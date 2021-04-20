@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.8d";
+version="v0.0.8e";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -153,15 +153,6 @@ module box_upper(tx=36-0.25,ty=-7/2,tz=5)
 //RPi4
 pi4();
 
-//UART
-serial();
-
-//I2C#1 header
-i2c_header();
-
-//I2C#3 header
-i2c_headerS();
-
 //PCB and component margins
 %hull()
 {
@@ -187,6 +178,15 @@ translate([(72-92)/2,0,16.4+7]) bbox(w=72, d=2.5);
 %translate([(72-92)/2,0,16.4+7+2.5+12]) obox(w=72,d=10);
 
 !projection(){// // // // //
+
+//UART
+serial();
+
+//I2C#1 header
+i2c_header();
+
+//I2C#3 header
+i2c_headerS();
 
 //lemo
 color("gray")
