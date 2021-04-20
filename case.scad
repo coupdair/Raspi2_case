@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.7";
+version="v0.0.8d";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -182,16 +182,18 @@ box_lower();
 ///middle box
 translate([(72-92)/2,0,16.4+7]) bbox(w=72, d=2.5);
 ///upper box
-box_upper();
+%box_upper();
 ///cover box
-translate([(72-92)/2,0,16.4+7+2.5+12]) obox(w=72,d=10);
+%translate([(72-92)/2,0,16.4+7+2.5+12]) obox(w=72,d=10);
+
+!projection(){// // // // //
 
 //lemo
 color("gray")
 {
 //lemo();
 lemo(dx=5,dy=0);
- lemo(dx=5,dy=-16);
+lemo(dx=5,dy=-16);
 lemo(dx=5,dy=-32);
 }//lemo
 
@@ -222,3 +224,5 @@ color("orange")
 led(dx=-22, dy=16);
 led(dx=-22, dy=8);
 }//led
+
+}//projection// // // // //
