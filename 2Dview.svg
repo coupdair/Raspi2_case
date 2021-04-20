@@ -5,26 +5,15 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="744.094488189"
-   height="1052.36220472"
-   id="svg2"
-   version="1.1"
+   sodipodi:docname="2Dview.svg"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="2Dview.svg">
-  <metadata
-     id="metadata1438">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
+   version="1.1"
+   id="svg2"
+   height="1052.36220472"
+   width="744.094488189">
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -44,7 +33,19 @@
      inkscape:window-x="0"
      inkscape:window-y="25"
      inkscape:window-maximized="0"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="layer4" />
+  <metadata
+     id="metadata1438">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
   <desc
      id="desc4">/home/xubuntu/MC2SA/case/RPi_case/2Dview.dxf - scale = 1.000000</desc>
   <defs
@@ -86,28 +87,38 @@
          stroke-width="0.25"
          id="path16" />
     </pattern>
+    <marker
+       id="Arrow1Lstart"
+       orient="auto"
+       refX="0.0"
+       refY="0.0"
+       style="overflow:visible"
+       inkscape:stockid="Arrow1Lstart">
+      <path
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         transform="scale(0.8) translate(12.5,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none"
+         id="path24128" />
+    </marker>
+    <marker
+       id="Arrow1Lend"
+       orient="auto"
+       refX="0.0"
+       refY="0.0"
+       style="overflow:visible"
+       inkscape:stockid="Arrow1Lend">
+      <path
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none"
+         id="path24131" />
+    </marker>
   </defs>
-  <g
-     inkscape:groupmode="layer"
-     inkscape:label="0"
-     id="g18"
-     style="display:inline" />
   <g
      inkscape:groupmode="layer"
      id="layer1"
      inkscape:label="PCB"
      style="display:inline">
-    <text
-       xml:space="preserve"
-       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-       x="53.60276"
-       y="740.99316"
-       id="text4436"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan4438"
-         x="53.60276"
-         y="740.99316">PCB moved by -110mm</tspan></text>
     <path
        d="m 62.04286,754.63165 0.61299,-0.26575"
        style="fill:none;stroke:#000000"
@@ -1007,11 +1018,6 @@
        d="m 202.98499,953.81511 0,-44.29134"
        style="fill:none;stroke:#000000;display:inline"
        id="path578"
-       inkscape:connector-curvature="0" />
-    <path
-       d="m 202.98499,909.52377 -102.75591,0"
-       style="fill:none;stroke:#000000;display:inline"
-       id="path580"
        inkscape:connector-curvature="0" />
     <path
        d="m 100.22908,909.52377 0,44.29134"
@@ -2648,12 +2654,57 @@
        style="fill:none;stroke:#000000;display:inline"
        id="path1234"
        inkscape:connector-curvature="0" />
+    <path
+       d="m 202.98499,837.52377 -102.75591,0"
+       style="display:inline;fill:none;stroke:#000000"
+       id="path580"
+       inkscape:connector-curvature="0"
+       transform="translate(0,72)" />
+  </g>
+  <g
+     style="display:inline"
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="cote">
+    <g
+       transform="translate(0,84)"
+       id="g24641"
+       style="fill:none;stroke:#000000;display:inline">
+      <path
+         style="stroke-width:1;marker-start:url(#Arrow1Lstart);marker-end:url(#Arrow1Lend)"
+         inkscape:connector-curvature="0"
+         d="M 100.22908,889.52377 H 202.98499"
+         id="path24643" />
+      <path
+         style="stroke-width:0.5"
+         inkscape:connector-curvature="0"
+         d="m 100.22908,869.52377 v 40"
+         id="path24645" />
+      <path
+         style="stroke-width:0.5"
+         inkscape:connector-curvature="0"
+         d="m 202.98499,869.52377 v 40"
+         id="path24647" />
+    </g>
+    <text
+       style="display:inline"
+       id="text37118"
+       y="0"
+       x="0">
+      <textPath
+         id="textPath37120"
+         dy="-70"
+         startOffset="50%"
+         xlink:href="#path580"
+         style="font-size:10px;font-style:normal;font-weight:normal;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none">29,00 mm</textPath>
+    </text>
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="devices"
-     style="display:inline">
+     style="display:inline"
+     sodipodi:insensitive="true">
     <path
        d="m 282.85112,811.65763 0,3.56102"
        style="fill:none;stroke:#000000;display:inline"
@@ -3654,5 +3705,22 @@
        style="fill:none;stroke:#000000;display:inline"
        id="path98"
        inkscape:connector-curvature="0" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="text"
+     sodipodi:insensitive="true">
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:Sans"
+       x="53.60276"
+       y="740.99316"
+       id="text4436"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4438"
+         x="53.60276"
+         y="740.99316">PCB moved by -110mm</tspan></text>
   </g>
 </svg>
