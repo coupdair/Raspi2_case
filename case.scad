@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.7f";
+version="v0.0.7g";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -91,11 +91,24 @@ module serial(w=3*2.5,h=2.5,d=14, space=-0.3, x=7.5+2*2.5-42.5,y=24.5,z=34.5)
   color("gray") translate([x,y,z+space]) cube([w,h,d]);
 }//serial
 
+//I2C header
+/*
+  l: length
+  h: height
+*/
+module i2c_header(pins=3, rows=2, x=19,y=4.5,z=34.5+1)
+{
+  translate([x,y,z]) rotate([90,0,90]) header(pins, rows);
+}//i2c_header
+
 //RPi4
 pi4();
 
 //UART
 serial();
+
+//I2C header
+i2c_header();
 
 //PCB and component margins
 %hull()
@@ -111,14 +124,14 @@ LEMO_HAT(withHeader=true);
 
 //case
 ///base box
-%bbox(d=16.4);
+bbox(d=16.4);
 ///lower box
-%translate([0,0,16.4]) bbox(d=7);
+translate([0,0,16.4]) bbox(d=7);
 ///middle box
-%translate([(72-92)/2,0,16.4+7]) bbox(w=72, d=2.5);
+translate([(72-92)/2,0,16.4+7]) bbox(w=72, d=2.5);
 
 ///upper box
-%translate([(72-92)/2,0,16.4+7+2.5]) obox(w=72,d=12);
+translate([(72-92)/2,0,16.4+7+2.5]) obox(w=72,d=12);
 
 ///cover box
 %translate([(72-92)/2,0,16.4+7+2.5+12]) obox(w=72,d=10);
