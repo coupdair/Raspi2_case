@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.8h";
+version="v0.0.8i";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -130,11 +130,17 @@ module box_lower(tx=34,ty=14,tz=2-0.25)
 }//box_lower
 
 ///middle box
-module box_middle(w=72, d=2.5, x=(72-92)/2,y=0,z=16.4+7, bbox=true)
+module box_middle(w=72,h=62,d=2.5, t=2, x=(72-92)/2,y=0,z=16.4+7, bbox=true)
 {
   translate([x,y,z])
   {
-    
+    //box
+    translate([0,0,-2*d]) cylinder(d=t,h=d);
+    translate([w/2-t/2,h/2-t/2,-2*d]) cylinder(d=t,h=d);
+    translate([-w/2+t/2,h/2-t/2,-2*d]) cylinder(d=t,h=d);
+    translate([-w/2+t/2,-h/2+t/2,-2*d]) cylinder(d=t,h=d);
+    translate([w/2-t/2,-h/2+t/2,-2*d]) cylinder(d=t,h=d);
+    //bounding box
     if(bbox==true) %bbox(w=w, d=d);
   }
 }//box_middle
@@ -184,9 +190,9 @@ LEMO_HAT(withHeader=true);
 
 //case: stack of boxes
 ///base box (alu. material)
-bbox(d=16.4);
+%bbox(d=16.4);
 ///other bowes for 3D print
-box_lower();
+%box_lower();
 box_middle();
 %box_upper();
 %box_cover();
