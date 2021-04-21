@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.8f";
+version="v0.0.8g";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -129,6 +129,15 @@ module box_lower(tx=34,ty=14,tz=2-0.25)
   }
 }//box_lower
 
+///middle box
+module box_middle()
+{
+  translate([(72-92)/2,0,16.4+7])
+  {
+    bbox(w=72, d=2.5);
+  }
+}//box_middle
+
 ///upper box
 module box_upper(tx=36-0.25,ty=-7/2,tz=5)
 {
@@ -148,7 +157,14 @@ module box_upper(tx=36-0.25,ty=-7/2,tz=5)
   }
 }//box_upper
 
-
+///over box
+module box_cover()
+{
+  translate([(72-92)/2,0,16.4+7+2.5+12])
+  {
+    obox(w=72,d=10);
+  }
+}//box_cover
 
 //RPi4
 pi4();
@@ -165,17 +181,14 @@ translate([(65-85)/2,0,21]) WS_PoE_PCB();
 //LEMO HAT
 LEMO_HAT(withHeader=true);
 
-//case
-///base box
+//case: stack of boxes
+///base box (alu. material)
 bbox(d=16.4);
-///lower box
+///other bowes for 3D print
 box_lower();
-///middle box
-translate([(72-92)/2,0,16.4+7]) bbox(w=72, d=2.5);
-///upper box
+box_middle();
 %box_upper();
-///cover box
-%translate([(72-92)/2,0,16.4+7+2.5+12]) obox(w=72,d=10);
+%box_cover();
 
 module devices()
 {
@@ -228,7 +241,11 @@ led(dx=-22, dy=8);
 
 }//devices
 
+devices();
+
+/*
 !projection(){// // // // //
 devices();
 translate([100,0,0]) LEMO_PCB();
 }//projection// // // // //
+*/
