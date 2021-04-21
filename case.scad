@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.8i";
+version="v0.0.8j";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -135,11 +135,15 @@ module box_middle(w=72,h=62,d=2.5, t=2, x=(72-92)/2,y=0,z=16.4+7, bbox=true)
   translate([x,y,z])
   {
     //box
-    translate([0,0,-2*d]) cylinder(d=t,h=d);
+    ///cylinders
+//    translate([0,0,-2*d]) cylinder(d=t,h=d);
     translate([w/2-t/2,h/2-t/2,-2*d]) cylinder(d=t,h=d);
     translate([-w/2+t/2,h/2-t/2,-2*d]) cylinder(d=t,h=d);
     translate([-w/2+t/2,-h/2+t/2,-2*d]) cylinder(d=t,h=d);
     translate([w/2-t/2,-h/2+t/2,-2*d]) cylinder(d=t,h=d);
+    ///cubes
+//    translate([0,0,-2*d]) cube([w-t,t,d]);
+    translate([-w/2+t/2,h/2-t,-2*d]) cube([w-t,t,d]);
     //bounding box
     if(bbox==true) %bbox(w=w, d=d);
   }
