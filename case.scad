@@ -144,6 +144,9 @@ module box_middle(w=72,h=62,d=2.5, t=2, x=(72-92)/2,y=0,z=16.4+7, bbox=true)
     ///cubes
 //    translate([0,0,-2*d]) cube([w-t,t,d]);
     translate([-w/2+t/2,h/2-t,-2*d]) cube([w-t,t,d]);
+    translate([-w/2+t/2,-h/2,-2*d]) cube([w-t,t,d]);
+    translate([-w/2,-h/2+t/2,-2*d]) cube([t,h-t,d]);
+    translate([w/2-t,-h/2+t/2,-2*d]) cube([t,h-t,d]);
     //bounding box
     if(bbox==true) %bbox(w=w, d=d);
   }
