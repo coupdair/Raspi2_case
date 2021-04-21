@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.8j";
+version="v0.0.8k";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -130,7 +130,7 @@ module box_lower(tx=34,ty=14,tz=2-0.25)
 }//box_lower
 
 ///middle box
-module box_middle(w=72,h=62,d=2.5, t=2, x=(72-92)/2,y=0,z=16.4+7, bbox=true)
+module box_middle(w=72,h=62,d=2.5, t=2,c=6,s=2.75, x=(72-92)/2,y=0,z=16.4+7, bbox=true)
 {
   translate([x,y,z])
   {
@@ -147,6 +147,9 @@ module box_middle(w=72,h=62,d=2.5, t=2, x=(72-92)/2,y=0,z=16.4+7, bbox=true)
     translate([-w/2+t/2,-h/2,-2*d]) cube([w-t,t,d]);
     translate([-w/2,-h/2+t/2,-2*d]) cube([t,h-t,d]);
     translate([w/2-t,-h/2+t/2,-2*d]) cube([t,h-t,d]);
+    //colomns
+    translate([0,0,-2*d]) {difference(){union(){cube([c,c,d]);cylinder(r=c/2,h=d);}cylinder(r=s/2,h=d+0.123);}}
+    translate([-w/2+c+1.32,h/2-c-1.23,-2*d]) rotate([0,0,90]) {difference(){union(){cube([c,c,d]);cylinder(r=c/2,h=d);}cylinder(r=s/2,h=d+0.123);}}
     //bounding box
     if(bbox==true) %bbox(w=w, d=d);
   }
@@ -191,18 +194,18 @@ pi4();
 }
 
 //PoE HAT
-translate([(65-85)/2,0,21]) WS_PoE_PCB();
+%translate([(65-85)/2,0,21]) WS_PoE_PCB();
 //LEMO HAT
 LEMO_HAT(withHeader=true);
 
 //case: stack of boxes
 ///base box (alu. material)
-%bbox(d=16.4);
+//%bbox(d=16.4);
 ///other bowes for 3D print
 %box_lower();
 box_middle();
 %box_upper();
-%box_cover();
+//%box_cover();
 
 module devices()
 {
