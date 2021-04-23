@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.4e";
+version="v0.1.4f";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -167,13 +167,13 @@ module screw_columns(east=0,ouest=0,south=0,north=0, d=2.5,c=6)
   dy=c+0.5;
   east=east-dx;
   ouest=ouest+dx;
-  south=south+dy;
-  north=north-dy;
+  south=south-dy;
+  north=north+dy;
 //  screw_column(d=d);
-  translate([east ,north,0]) rotate([0,0,0])   screw_column(d=d);
-  translate([ouest,north,0]) rotate([0,0,90])  screw_column(d=d);
-  translate([ouest,south,0]) rotate([0,0,180]) screw_column(d=d);
-  translate([east ,south,0]) rotate([0,0,270]) screw_column(d=d);
+  translate([east ,south,0]) rotate([0,0,0])   screw_column(d=d);
+  translate([ouest,south,0]) rotate([0,0,90])  screw_column(d=d);
+  translate([ouest,north,0]) rotate([0,0,180]) screw_column(d=d);
+  translate([east ,north,0]) rotate([0,0,270]) screw_column(d=d);
 }//screw_columns
 //4 screw columns for box corners
 /*
@@ -187,8 +187,8 @@ module box_columns(w=72,h=62,d=2.5, c=6)
 {
   east=w/2;
   ouest=-w/2;
-  south=-h/2;
-  north=h/2;
+  south=h/2;
+  north=-h/2;
   screw_columns(east,ouest,south,north, d=d,c=c);
 }//box_columns
 
@@ -318,7 +318,7 @@ module box_upper(w=72,h=62,d=12, tx=36-0.25,ty=-7/2,tz=5, bbox=true)
     translate([0,0,-5]) open_box_sides(w,h,d,t);
     //colomns
 //    !screw_column(d);
-    translate([0,0,-5]) screw_columns(east,ouest,north,south,d);
+    translate([0,0,-5]) screw_columns(east,ouest,south,north,d);
 //    box_columns(w,h,d, c);//debug ?!
     //bounding box
     if(bbox==true) %obox(w=72,d=12);
@@ -348,7 +348,7 @@ module box_cover(w=72,h=62,d=10, bbox=true)
     //sides
     translate([0,0,-5]) open_box_sides(w,h,d,t);
     //colomns
-    translate([0,0,-5]) screw_columns(east,ouest,north,south,d);
+    translate([0,0,-5]) screw_columns(east,ouest,south,north,d);
     //bounding box
     if(bbox==true) %obox(w=72,d=d);
   }
