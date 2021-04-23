@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.4f";
+version="v0.1.4g";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -204,16 +204,17 @@ module box_columns(w=72,h=62,d=2.5, c=6)
 */
 module box_plane(x0=12,x1=23,y0=34,y1=45, d=2.5, t=2)
 {
-  x0=x0-t/2;
-  x1=x1+t/2;
-  y0=y0+t/2;
-  y1=y1-t/2;
+  r=t/2;
+  x0=x0-r;
+  x1=x1+r;
+  y0=y0-r;
+  y1=y1+r;
   hull()
   {
-    translate([x0,y0,0]) sphere(r=t/2);
-    translate([x1,y1,0]) sphere(r=t/2);
-    translate([x0,y1,0]) sphere(r=t/2);
-    translate([x1,y0,0]) sphere(r=t/2);
+    translate([x0,y0,0]) sphere(r=r);
+    translate([x1,y1,0]) sphere(r=r);
+    translate([x0,y1,0]) sphere(r=r);
+    translate([x1,y0,0]) sphere(r=r);
   }//hull
 }//box_plane
 
@@ -344,7 +345,7 @@ module box_cover(w=72,h=62,d=10, bbox=true)
   translate([(72-92)/2,0,16.4+7+2.5+12])
   {
     //top
-    translate([0,0,-5]) box_plane(east,ouest,south,north);
+#    translate([0,0,d-5]) box_plane(east,ouest,south,north);
     //sides
     translate([0,0,-5]) open_box_sides(w,h,d,t);
     //colomns
