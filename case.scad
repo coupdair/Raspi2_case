@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.0f";
+version="v0.1.0g";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -138,7 +138,7 @@ module box_lower(tx=34,ty=14,tz=2-0.25)
 module screw_column(d=2.5, c=6,s=2.75)
 {
   epsilon=0.123;
-  translate([0,0,-2*d]) {difference(){hull(){cube([c,c,d]);cylinder(r=c/2,h=d);}cylinder(r=s/2,h=d+epsilon);}}
+  difference(){hull(){cube([c,c,d]);cylinder(r=c/2,h=d);}cylinder(r=s/2,h=d+epsilon);}
 }//screw_column
 //4 screw columns for box corners
 /*
@@ -234,7 +234,7 @@ module box_middle(w=72,h=62,d=2.5, t=2,c=6,s=2.75, x=(72-92)/2,y=0,z=16.4+7, bbo
     //sides
     translate([0,0,-2*d]) box_sides(w,h,d,t);
     //colomns
-    box_columns(w,h,d, c);
+    translate([0,0,-2*d]) box_columns(w,h,d, c);
     //bounding box
     if(bbox==true) %bbox(w=w, d=d);
   }
