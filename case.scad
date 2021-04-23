@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.0h";
+version="v0.1.0i";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -177,9 +177,9 @@ module box_columns(w=72,h=62,d=2.5, c=6)
 {
   east=w/2;
   ouest=-w/2;
-  south=h/2;
-  north=-h/2;
-  screw_columns(east,ouest,north,south, d,c);
+  south=-h/2;
+  north=h/2;
+  screw_columns(east,ouest,south,north, d=d,c=c);
 }//box_columns
 
 //side for box
@@ -243,12 +243,18 @@ module box_middle(w=72,h=62,d=2.5, t=2,c=6,s=2.75, x=(72-92)/2,y=0,z=16.4+7, bbo
 ///upper box
 module box_upper(w=72,h=62,d=12, tx=36-0.25,ty=-7/2,tz=5, bbox=true)
 {
+  east=w/2;
+  ouest=-w/2;
+  south=h/2;
+  north=-h/2;
   translate([(72-92)/2,0,16.4+7+2.5])
   {
     //sides
     translate([0,0,-2*2.5]) box_sides(w,h,d,t);
     //colomns
-    box_columns(w,h,d, c);
+//    !screw_column(d);
+    translate([0,0,-2*2.5]) screw_columns(east,ouest,north,south,d);
+//    box_columns(w,h,d, c);//debug ?!
     //bounding box
     if(bbox==true) %obox(w=72,d=12);
     //labels
@@ -292,9 +298,9 @@ LEMO_HAT(withHeader=true);
 //%bbox(d=16.4);
 ///other bowes for 3D print
 %box_lower();
-box_middle();
+%box_middle();
 box_upper();
-%%box_cover();
+%box_cover();
 
 module devices()
 {
