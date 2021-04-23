@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.0g";
+version="v0.1.0h";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -248,7 +248,7 @@ module box_upper(w=72,h=62,d=12, tx=36-0.25,ty=-7/2,tz=5, bbox=true)
     //sides
     translate([0,0,-2*2.5]) box_sides(w,h,d,t);
     //colomns
-    box_columns(w,h,d=0, c);
+    box_columns(w,h,d, c);
     //bounding box
     if(bbox==true) %obox(w=72,d=12);
     //labels
