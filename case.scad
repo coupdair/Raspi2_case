@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.8";
+version="v0.0.9d";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -182,6 +182,36 @@ module box_columns(w=72,h=62,d=2.5, c=6)
   screw_columns(east,ouest,north,south, d,c);
 }//box_columns
 
+//side for box
+/*
+  w: width
+  h: height
+
+  d: depth
+  t: side thickness
+*/
+module box_side(w=72,h=0,d=2.5, t=2)
+{
+  hull()
+  {
+    translate([w/2-t/2,h/2-t/2,-2*d]) cylinder(d=t,h=d);
+    translate([-w/2+t/2,h/2-t/2,-2*d]) cylinder(d=t,h=d);
+  }//hull
+}//box_sides
+//4 sides for box
+/*
+  w: width
+  h: height
+  d: depth
+
+  t: side thickness
+*/
+module box_sides(w=72,h=62,d=2.5, c=6,t=2)
+{
+translate([0,12,0]) box_side(w,h,d,t);
+}//box_sides
+
+
 ///middle box
 /*
   d: box depth
@@ -194,6 +224,8 @@ module box_middle(w=72,h=62,d=2.5, t=2,c=6,s=2.75, x=(72-92)/2,y=0,z=16.4+7, bbo
   {
     //box
     ///cylinders
+box_sides(w,h,d,t);
+
 //    translate([0,0,-2*d]) cylinder(d=t,h=d);
     translate([w/2-t/2,h/2-t/2,-2*d]) cylinder(d=t,h=d);
     translate([-w/2+t/2,h/2-t/2,-2*d]) cylinder(d=t,h=d);
