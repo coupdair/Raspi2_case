@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.2d";
+version="v0.1.2";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -325,12 +325,12 @@ LEMO_HAT(withHeader=true);
 
 //case: stack of boxes
 ///base box (alu. material)
-//%bbox(d=16.4);
+bbox(d=16.4);
 ///other bowes for 3D print
-//%box_lower();
-//box_middle();
+%box_lower();
+%box_middle();
 //upper box
-difference()
+%difference()
 {
   box_upper();
 //   for(m=[-0.25,0.25]){translate([(65-85)/2+m,0,21  ]) WS_PoE_PCB();}
