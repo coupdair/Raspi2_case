@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.9e";
+version="v0.1.0d";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -241,12 +241,16 @@ module box_middle(w=72,h=62,d=2.5, t=2,c=6,s=2.75, x=(72-92)/2,y=0,z=16.4+7, bbo
 }//box_middle
 
 ///upper box
-module box_upper(tx=36-0.25,ty=-7/2,tz=5)
+module box_upper(w=72,h=62,d=12, tx=36-0.25,ty=-7/2,tz=5, bbox=true)
 {
   translate([(72-92)/2,0,16.4+7+2.5])
   {
-    //bb
-    obox(w=72,d=12);
+    //sides
+    box_sides(w,h,d,t);
+    //colomns
+    box_columns(w,h,d=0, c);
+    //bounding box
+    if(bbox==true) %obox(w=72,d=12);
     //labels
     ///I2C//data/clock
     color("Violet") translate([tx,ty,tz]) rotate([0,90,0])
@@ -289,8 +293,8 @@ LEMO_HAT(withHeader=true);
 ///other bowes for 3D print
 %box_lower();
 box_middle();
-%box_upper();
-//%box_cover();
+box_upper();
+%%box_cover();
 
 module devices()
 {
