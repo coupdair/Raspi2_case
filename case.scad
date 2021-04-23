@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.8n";
+version="v0.0.8o";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -131,6 +131,9 @@ module box_lower(tx=34,ty=14,tz=2-0.25)
 
 //column for screw
 /*
+  d: box depth
+  c: column diameter
+  s: screw hole diameter
 */
 module screw_column(d=2.5, c=6,s=2.75)
 {
@@ -138,12 +141,16 @@ module screw_column(d=2.5, c=6,s=2.75)
 }//screw_column
 //4 screw columns for box corners
 /*
-  east  position (x0)
-  ouest position (x1)
-  south position (y0)
-  north position (y1)
+  east:  position (x0)
+  ouest: position (x1)
+  south: position (y0)
+  north: position (y1)
+
+  d: box depth
+  c: column diameter
+  s: screw hole diameter
 */
-module box_columns(east=0,ouest=0,south=0,north=0, d=2.5)
+module box_columns(east=0,ouest=0,south=0,north=0, d=2.5,c=6)
 {
 //  screw_column(d=d);
   translate([east ,north,0]) rotate([0,0,0])   screw_column(d=d);
@@ -153,6 +160,11 @@ module box_columns(east=0,ouest=0,south=0,north=0, d=2.5)
 }//box_columns
 
 ///middle box
+/*
+  d: box depth
+  c: column diameter
+  s: screw hole diameter
+*/
 module box_middle(w=72,h=62,d=2.5, t=2,c=6,s=2.75, x=(72-92)/2,y=0,z=16.4+7, bbox=true)
 {
   ouest=-w/2+c+1.32;
@@ -173,7 +185,7 @@ module box_middle(w=72,h=62,d=2.5, t=2,c=6,s=2.75, x=(72-92)/2,y=0,z=16.4+7, bbo
     translate([-w/2,-h/2+t/2,-2*d]) cube([t,h-t,d]);
     translate([w/2-t,-h/2+t/2,-2*d]) cube([t,h-t,d]);
     //colomns
-    box_columns(w/2-c-1.32,-w/2+c+1.32,-h/2+c+1.23,h/2-c-1.23);
+    box_columns(w/2-(c+1.32),-w/2+(c+1.32),-h/2+(c+1.23),h/2-(c+1.23), d=2.5,c=6);
     //bounding box
     if(bbox==true) %bbox(w=w, d=d);
   }
