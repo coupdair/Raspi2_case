@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.1";
+version="v0.1.2d";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -153,8 +153,8 @@ module screw_column(d=2.5, c=6,s=2.75)
 */
 module screw_columns(east=0,ouest=0,south=0,north=0, d=2.5,c=6)
 {
-  dx=c+1.32;
-  dy=c+1.23;
+  dx=c+1.0;
+  dy=c+0.5;
   east=east-dx;
   ouest=ouest+dx;
   south=south+dy;
@@ -319,7 +319,7 @@ module box_cover()
 }
 
 //PoE HAT
-//translate([(65-85)/2,0,21]) WS_PoE_PCB();
+translate([(65-85)/2,0,21]) WS_PoE_PCB();
 //LEMO HAT
 LEMO_HAT(withHeader=true);
 
@@ -328,15 +328,15 @@ LEMO_HAT(withHeader=true);
 //%bbox(d=16.4);
 ///other bowes for 3D print
 //%box_lower();
-//%box_middle();
-for(m=[-0.25,0.25]){echo(m);}
+//box_middle();
+//upper box
 difference()
 {
   box_upper();
 //   for(m=[-0.25,0.25]){translate([(65-85)/2+m,0,21  ]) WS_PoE_PCB();}
 //   for(m=[-0.25,0.25]){translate([(65-85)/2  ,m,21  ]) WS_PoE_PCB();}
    for(m=[-0.25,0.25]){translate([(65-85)/2  ,0,21+m]) WS_PoE_PCB();}
-}
+}//upper box
 %box_cover();
 
 module devices()
