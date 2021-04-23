@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.8k";
+version="v0.0.8l";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
