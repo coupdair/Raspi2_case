@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.0.9d";
+version="v0.0.9e";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -184,18 +184,20 @@ module box_columns(w=72,h=62,d=2.5, c=6)
 
 //side for box
 /*
-  w: width
-  h: height
+  x0: east  bbox position
+  x1: ouest bbox position
+  y0: south bbox position
+  y1: north bbox position
 
   d: depth
   t: side thickness
 */
-module box_side(w=72,h=0,d=2.5, t=2)
+module box_side(x0,x1,y0,y1, d=2.5, t=2)
 {
   hull()
   {
-    translate([w/2-t/2,h/2-t/2,-2*d]) cylinder(d=t,h=d);
-    translate([-w/2+t/2,h/2-t/2,-2*d]) cylinder(d=t,h=d);
+    translate([x0,y0,-2*d]) cylinder(d=t,h=d);
+    translate([x1,y1,-2*d]) cylinder(d=t,h=d);
   }//hull
 }//box_sides
 //4 sides for box
@@ -208,7 +210,14 @@ module box_side(w=72,h=0,d=2.5, t=2)
 */
 module box_sides(w=72,h=62,d=2.5, c=6,t=2)
 {
-translate([0,12,0]) box_side(w,h,d,t);
+  east=w/2-t/2;
+  ouest=-w/2+t/2;
+  south=h/2-t/2;
+  north=-h/2+t/2;
+  box_side(east,ouest,south,south,d,t);
+  box_side(east,ouest,north,north,d,t);
+  box_side(east,east,south,north,d,t);
+  box_side(ouest,ouest,south,north,d,t);
 }//box_sides
 
 
@@ -222,21 +231,8 @@ module box_middle(w=72,h=62,d=2.5, t=2,c=6,s=2.75, x=(72-92)/2,y=0,z=16.4+7, bbo
 {
   translate([x,y,z])
   {
-    //box
-    ///cylinders
-box_sides(w,h,d,t);
-
-//    translate([0,0,-2*d]) cylinder(d=t,h=d);
-    translate([w/2-t/2,h/2-t/2,-2*d]) cylinder(d=t,h=d);
-    translate([-w/2+t/2,h/2-t/2,-2*d]) cylinder(d=t,h=d);
-    translate([-w/2+t/2,-h/2+t/2,-2*d]) cylinder(d=t,h=d);
-    translate([w/2-t/2,-h/2+t/2,-2*d]) cylinder(d=t,h=d);
-    ///cubes
-//    translate([0,0,-2*d]) cube([w-t,t,d]);
-    translate([-w/2+t/2,h/2-t,-2*d]) cube([w-t,t,d]);
-    translate([-w/2+t/2,-h/2,-2*d]) cube([w-t,t,d]);
-    translate([-w/2,-h/2+t/2,-2*d]) cube([t,h-t,d]);
-    translate([w/2-t,-h/2+t/2,-2*d]) cube([t,h-t,d]);
+    //sides
+    box_sides(w,h,d,t);
     //colomns
     box_columns(w,h,d, c);
     //bounding box
