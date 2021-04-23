@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.0i";
+version="v0.1.0j";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -219,6 +219,32 @@ module box_sides(w=72,h=62,d=2.5, c=6,t=2)
   box_side(east,east,south,north,d,t);
   box_side(ouest,ouest,south,north,d,t);
 }//box_sides
+//7 sides for open box
+/*
+  w: width
+  h: height
+  d: depth
+
+  t: side thickness
+*/
+module open_box_sides(w=72,h=62,d=2.5, d1=12,d2=23, c=6,t=2)
+{
+  east=w/2-t/2;
+  ouest=-w/2+t/2;
+  south=h/2-t/2;
+  north=-h/2+t/2;
+  x1=east-23;
+  y1=north+12;
+  x2=23;
+  box_side(east,ouest,south,south,d,t);
+  //box_side(east,ouest,north,north,d,t);
+  box_side(east,east,south,north,d,t);
+  box_side(ouest,ouest,south,north,d,t);
+  //opening for oLED
+  //box_side(east,ouest,north,north,d,t);
+  box_side(east,x1,north,north,d,t);
+  box_side(x1,x1,y1,north,d,t);
+}//open_box_sides
 
 
 ///middle box
@@ -250,7 +276,7 @@ module box_upper(w=72,h=62,d=12, tx=36-0.25,ty=-7/2,tz=5, bbox=true)
   translate([(72-92)/2,0,16.4+7+2.5])
   {
     //sides
-    translate([0,0,-2*2.5]) box_sides(w,h,d,t);
+    translate([0,0,-2*2.5]) open_box_sides(w,h,d,t);
     //colomns
 //    !screw_column(d);
     translate([0,0,-2*2.5]) screw_columns(east,ouest,north,south,d);
@@ -291,7 +317,7 @@ pi4();
 //PoE HAT
 %translate([(65-85)/2,0,21]) WS_PoE_PCB();
 //LEMO HAT
-LEMO_HAT(withHeader=true);
+//LEMO_HAT(withHeader=true);
 
 //case: stack of boxes
 ///base box (alu. material)
@@ -300,7 +326,7 @@ LEMO_HAT(withHeader=true);
 %box_lower();
 %box_middle();
 box_upper();
-%box_cover();
+//box_cover();
 
 module devices()
 {
@@ -353,7 +379,7 @@ led(dx=-22, dy=8);
 
 }//devices
 
-devices();
+//devices();
 
 /*
 !projection(){// // // // //
