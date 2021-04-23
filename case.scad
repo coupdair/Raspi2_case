@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.2";
+version="v0.1.3d";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -116,12 +116,14 @@ module i2c_headerS(pins=4, rows=1, x=-12,y=4.25,z=34.5-2.5)
 }//i2c_headerS
 
 ///lower box
-module box_lower(tx=34,ty=14,tz=2-0.25)
+module box_lower(d=7, tx=34,ty=14,tz=2-0.25, bbox=true)
 {
   translate([0,0,16.4]) 
   {
-    //bb
-    bbox(d=7);
+    //colomns
+    translate([(72-92)/2,0,-5]) box_columns(d=d);
+    //bounding box
+    if(bbox==true) %bbox(d=d);
     ///PoE
     color("Violet") translate([tx,ty,tz]) rotate([0,0,0])
       cube([10,10,0.5]);//bb
@@ -319,17 +321,18 @@ module box_cover()
 }
 
 //PoE HAT
-translate([(65-85)/2,0,21]) WS_PoE_PCB();
+//translate([(65-85)/2,0,21]) WS_PoE_PCB();
 //LEMO HAT
-LEMO_HAT(withHeader=true);
+//LEMO_HAT(withHeader=true);
 
 //case: stack of boxes
 ///base box (alu. material)
 bbox(d=16.4);
 ///other bowes for 3D print
-%box_lower();
+box_lower();
 %box_middle();
 //upper box
+/*
 %difference()
 {
   box_upper();
@@ -337,7 +340,8 @@ bbox(d=16.4);
 //   for(m=[-0.25,0.25]){translate([(65-85)/2  ,m,21  ]) WS_PoE_PCB();}
    for(m=[-0.25,0.25]){translate([(65-85)/2  ,0,21+m]) WS_PoE_PCB();}
 }//upper box
-%box_cover();
+*/
+//%box_cover();
 
 module devices()
 {
@@ -390,7 +394,7 @@ led(dx=-22, dy=8);
 
 }//devices
 
-devices();
+//devices();
 
 /*
 !projection(){// // // // //
