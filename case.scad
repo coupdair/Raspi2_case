@@ -119,7 +119,7 @@ module i2c_headerS(pins=4, rows=1, x=-12,y=4.25,z=34.5-2.5)
 module box_lower(w=92,h=62,d=7, t=2, tx=34,ty=14,tz=2-0.25, bbox=true)
 {
   dx=(72-92)/2;
-  sx=2*dx;
+  sx=-2*dx;
   translate([0,0,16.4]) 
   {
     //USB/RJ45 top
@@ -202,7 +202,7 @@ module box_columns(w=72,h=62,d=2.5, c=6)
   d: depth
   t: side thickness
 */
-module box_plane(x0=1,x1=2,y0=3,y1=4, d=2.5, t=2)
+module box_plane(x0=12,x1=23,y0=34,y1=45, d=2.5, t=2)
 {
   x0=x0-t/2;
   x1=x1+t/2;
@@ -344,7 +344,7 @@ module box_cover(w=72,h=62,d=10, bbox=true)
   translate([(72-92)/2,0,16.4+7+2.5+12])
   {
     //top
-    translate([0,0,-5]) box_plane(-w/2,w/2,-h/2,h/2);
+    translate([0,0,-5]) box_plane(east,ouest,south,north);
     //sides
     translate([0,0,-5]) open_box_sides(w,h,d,t);
     //colomns
