@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.1e";
+version="v0.1.1";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -333,12 +333,9 @@ for(m=[-0.25,0.25]){echo(m);}
 difference()
 {
   box_upper();
-//  translate([(65-85)/2  ,0,21-0.5]) WS_PoE_PCB();
-/*
-  for(m=[-0.25,0.25]){translate([(65-85)/2+m,0,21  ]) WS_PoE_PCB();}
-  for(m=[-0.25,0.25]){translate([(65-85)/2  ,m,21  ]) WS_PoE_PCB();}
-*/
-  for(m=[-0.25,0.25]){translate([(65-85)/2  ,0,21+m]) WS_PoE_PCB();}
+//   for(m=[-0.25,0.25]){translate([(65-85)/2+m,0,21  ]) WS_PoE_PCB();}
+//   for(m=[-0.25,0.25]){translate([(65-85)/2  ,m,21  ]) WS_PoE_PCB();}
+   for(m=[-0.25,0.25]){translate([(65-85)/2  ,0,21+m]) WS_PoE_PCB();}
 }
 %box_cover();
 
