@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.0e";
+version="v0.1.0f";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -196,8 +196,8 @@ module box_side(x0,x1,y0,y1, d=2.5, t=2)
 {
   hull()
   {
-    translate([x0,y0,-2*d]) cylinder(d=t,h=d);
-    translate([x1,y1,-2*d]) cylinder(d=t,h=d);
+    translate([x0,y0,0]) cylinder(d=t,h=d);
+    translate([x1,y1,0]) cylinder(d=t,h=d);
   }//hull
 }//box_sides
 //4 sides for box
@@ -232,7 +232,7 @@ module box_middle(w=72,h=62,d=2.5, t=2,c=6,s=2.75, x=(72-92)/2,y=0,z=16.4+7, bbo
   translate([x,y,z])
   {
     //sides
-    box_sides(w,h,d,t);
+    translate([0,0,-2*d]) box_sides(w,h,d,t);
     //colomns
     box_columns(w,h,d, c);
     //bounding box
@@ -246,7 +246,7 @@ module box_upper(w=72,h=62,d=12, tx=36-0.25,ty=-7/2,tz=5, bbox=true)
   translate([(72-92)/2,0,16.4+7+2.5])
   {
     //sides
-    translate([0,0,2*d-2*2.5]) box_sides(w,h,d,t);
+    translate([0,0,-2*2.5]) box_sides(w,h,d,t);
     //colomns
     box_columns(w,h,d=0, c);
     //bounding box
