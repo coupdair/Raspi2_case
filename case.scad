@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.4";
+version="v0.1.5d";
 
 ///bounding box
 bbox=false;
@@ -411,7 +411,15 @@ difference()
    for(m=[-0.25,0.25]){translate([(65-85)/2  ,0,21+m]) WS_PoE_PCB();}
 }//upper box
 /**/
+//cover box
+/** /
+difference()
+{
+*/
 box_cover(bbox=bbox);
+/**
+}//upper box
+/**/
 
 module devices()
 {
