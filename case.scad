@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.3e";
+version="v0.1.3f";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -116,13 +116,17 @@ module i2c_headerS(pins=4, rows=1, x=-12,y=4.25,z=34.5-2.5)
 }//i2c_headerS
 
 ///lower box
-module box_lower(w=92,h=62,d=7, tx=34,ty=14,tz=2-0.25, bbox=true)
+module box_lower(w=92,h=62,d=7, t=2, tx=34,ty=14,tz=2-0.25, bbox=true)
 {
   dx=(72-92)/2;
+  sx=2*dx+t;
   translate([0,0,16.4]) 
   {
-    //sides
-//    translate([0,0,-5]) box_sides(w,h,d=d);
+    //USB/RJ45 top
+    //translate([-2*dx,0,-5]) box_plane(d=d);
+    //USB/RJ45 sides
+    translate([92/2+dx-t/2,0,-5]) box_sides(w=sx,d=d-t+0.123);
+    //PCB sides
     translate([dx,0,-5]) box_sides(d=d);
     //colomns
     translate([dx,0,-5]) box_columns(d=d);
@@ -334,7 +338,7 @@ module box_cover()
 bbox(d=16.4);
 ///other bowes for 3D print
 box_lower();
-box_middle();
+//box_middle();
 //upper box
 /*
 %difference()
