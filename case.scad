@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.3";
+version="v0.1.4d";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -318,7 +318,7 @@ module box_upper(w=72,h=62,d=12, tx=36-0.25,ty=-7/2,tz=5, bbox=true)
     translate([0,0,-5]) open_box_sides(w,h,d,t);
     //colomns
 //    !screw_column(d);
-    translate([0,0,-2*2.5]) screw_columns(east,ouest,north,south,d);
+    translate([0,0,-5]) screw_columns(east,ouest,north,south,d);
 //    box_columns(w,h,d, c);//debug ?!
     //bounding box
     if(bbox==true) %obox(w=72,d=12);
@@ -335,11 +335,20 @@ module box_upper(w=72,h=62,d=12, tx=36-0.25,ty=-7/2,tz=5, bbox=true)
 }//box_upper
 
 ///over box
-module box_cover()
+module box_cover(w=72,h=62,d=10, bbox=true)
 {
+  east=w/2;
+  ouest=-w/2;
+  south=h/2;
+  north=-h/2;
   translate([(72-92)/2,0,16.4+7+2.5+12])
   {
-    obox(w=72,d=10);
+    //sides
+    translate([0,0,-5]) open_box_sides(w,h,d,t);
+    //colomns
+    translate([0,0,-5]) screw_columns(east,ouest,north,south,d);
+    //bounding box
+    if(bbox==true) %obox(w=72,d=d);
   }
 }//box_cover
 
@@ -374,7 +383,7 @@ difference()
    for(m=[-0.25,0.25]){translate([(65-85)/2  ,0,21+m]) WS_PoE_PCB();}
 }//upper box
 /**/
-%box_cover();
+box_cover();
 
 module devices()
 {
