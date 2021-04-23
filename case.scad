@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.0";
+version="v0.1.1d";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -309,7 +309,7 @@ module box_cover()
 }//box_cover
 
 //RPi4
-pi4();
+//pi4();
 
 //PCB and component margins
 %hull()
@@ -319,7 +319,7 @@ pi4();
 }
 
 //PoE HAT
-translate([(65-85)/2,0,21]) WS_PoE_PCB();
+//translate([(65-85)/2,0,21]) WS_PoE_PCB();
 //LEMO HAT
 LEMO_HAT(withHeader=true);
 
@@ -327,9 +327,14 @@ LEMO_HAT(withHeader=true);
 ///base box (alu. material)
 //%bbox(d=16.4);
 ///other bowes for 3D print
-%box_lower();
-%box_middle();
-box_upper();
+//%box_lower();
+//%box_middle();
+difference()
+{
+  box_upper();
+  translate([(65-85)/2,0,21+0.5]) WS_PoE_PCB();
+  translate([(65-85)/2,0,21-0.5]) WS_PoE_PCB();
+}
 %box_cover();
 
 module devices()
