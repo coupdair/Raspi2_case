@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.4j";
+version="v0.1.4k";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -228,9 +228,12 @@ module box_plane(x0=12,x1=23,y0=34,y1=45, d=2.5, t=2)
   d: depth
   t: side thickness
 */
-module open_box_plane(x0=12,x1=23,y0=34,y1=45, d=2.5, t=2)
+module open_box_plane(east=12,ouest=23,south=34,north=45, wo=26, d=2.5, t=2)
 {
-  box_plane(x0,x1,y0,y1);
+  x1=east-24-t;
+  y1=north+12+t;
+  x2=x1-wo-3;
+  box_plane(east,ouest,south,north);
 }//open_box_plane
 
 //side for box
