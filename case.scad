@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.3i";
+version="v0.1.3";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -116,7 +116,7 @@ module i2c_headerS(pins=4, rows=1, x=-12,y=4.25,z=34.5-2.5)
 }//i2c_headerS
 
 ///lower box
-module box_lower(w=92,h=62,d=7, t=2, tx=34,ty=14,tz=2-0.25, bbox=false)
+module box_lower(w=92,h=62,d=7, t=2, tx=34,ty=14,tz=2-0.25, bbox=true)
 {
   dx=(72-92)/2;
   sx=2*dx;
@@ -354,27 +354,27 @@ module box_cover()
 }
 
 //PoE HAT
-//translate([(65-85)/2,0,21]) WS_PoE_PCB();
+translate([(65-85)/2,0,21]) WS_PoE_PCB();
 //LEMO HAT
-//LEMO_HAT(withHeader=true);
+LEMO_HAT(withHeader=true);
 
 //case: stack of boxes
 ///base box (alu. material)
 bbox(d=16.4);
-///other bowes for 3D print
+///other boxes for 3D print
 box_lower();
-//box_middle();
+box_middle();
 //upper box
-/*
-%difference()
+/**/
+difference()
 {
   box_upper();
 //   for(m=[-0.25,0.25]){translate([(65-85)/2+m,0,21  ]) WS_PoE_PCB();}
 //   for(m=[-0.25,0.25]){translate([(65-85)/2  ,m,21  ]) WS_PoE_PCB();}
    for(m=[-0.25,0.25]){translate([(65-85)/2  ,0,21+m]) WS_PoE_PCB();}
 }//upper box
-*/
-//%box_cover();
+/**/
+%box_cover();
 
 module devices()
 {
