@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.0k";
+version="v0.1.0l";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -38,7 +38,7 @@ module bbox(w=92,h=62,d=16.4)
   o: oLED
   m: margin
 */
-module obox(w=92,h=62,d=16.4, wo=26,ho=11, m=0.5,hm=2.5)
+module obox(w=92,h=62,d=16.4, do=17.5,wo=26,ho=11, m=0.5,hm=2.5)
 {
   translate([-w/2,-h/2,-5])
   difference()
@@ -46,7 +46,7 @@ module obox(w=92,h=62,d=16.4, wo=26,ho=11, m=0.5,hm=2.5)
     //box
     cube([w,h,d]);
     //oLED hole
-    translate([17.5-m,-m,-m]) cube([wo+2*m,ho+2*m+hm,d+2*m]);
+    translate([do-m,-m,-m]) cube([wo+2*m,ho+2*m+hm,d+2*m]);
   }
 }//obox
 
@@ -227,15 +227,15 @@ module box_sides(w=72,h=62,d=2.5, c=6,t=2)
 
   t: side thickness
 */
-module open_box_sides(w=72,h=62,d=2.5, d1=12,d2=23, c=6,t=2)
+module open_box_sides(w=72,h=62,d=2.5, do=17.5,wo=26,ho=11, m=0.5,hm=2.5, d1=12,d2=23, c=6,t=2)
 {
   east=w/2-t/2;
   ouest=-w/2+t/2;
   south=h/2-t/2;
   north=-h/2+t/2;
-  x1=east-32;
-  y1=north+12;
-  x2=x1-23;
+  x1=east-24-t;
+  y1=north+12+t;
+  x2=x1-wo-3;
   box_side(east,ouest,south,south,d,t);
   //box_side(east,ouest,north,north,d,t);
   box_side(east,east,south,north,d,t);
@@ -279,13 +279,13 @@ module box_upper(w=72,h=62,d=12, tx=36-0.25,ty=-7/2,tz=5, bbox=true)
   translate([(72-92)/2,0,16.4+7+2.5])
   {
     //sides
-    translate([0,0,-2*2.5]) open_box_sides(w,h,d,t);
+color("violet")    translate([0,0,-2*2.5]) open_box_sides(w,h,d,t);
     //colomns
 //    !screw_column(d);
     translate([0,0,-2*2.5]) screw_columns(east,ouest,north,south,d);
 //    box_columns(w,h,d, c);//debug ?!
     //bounding box
-    if(bbox==true) %obox(w=72,d=12);
+    if(bbox==true) obox(w=72,d=12);
     //labels
     ///I2C//data/clock
     color("Violet") translate([tx,ty,tz]) rotate([0,90,0])
