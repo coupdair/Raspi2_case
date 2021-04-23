@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.3h";
+version="v0.1.3i";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -123,9 +123,9 @@ module box_lower(w=92,h=62,d=7, t=2, tx=34,ty=14,tz=2-0.25, bbox=false)
   translate([0,0,16.4]) 
   {
     //USB/RJ45 top
-    translate([92/2+dx,0,-5+d-t-1]) box_plane(-sx/2,sx/2-t,-h/2,h/2);
+    translate([92/2+dx,0,-5+d-t/2]) box_plane(-sx/2,sx/2-t,-h/2,h/2);
     //USB/RJ45 sides
-    translate([92/2+dx-t/2,0,-5]) box_sides(w=sx+t,d=d-t+0.123);
+    translate([92/2+dx-t/2,0,-5]) box_sides(w=sx+t,d=d-t/2);
     //PCB sides
     translate([dx,0,-5]) box_sides(d=d);
     //colomns
@@ -202,14 +202,6 @@ module box_columns(w=72,h=62,d=2.5, c=6)
   d: depth
   t: side thickness
 */
-module halfsphere(d=2.5)
-{
-  translate([0,0,d]) 
-  //intersection()
-  {
-    sphere(r=d/2);
-  }
-}//halfsphere
 module box_plane(x0=1,x1=2,y0=3,y1=4, d=2.5, t=2)
 {
   x0=x0-t/2;
@@ -218,10 +210,10 @@ module box_plane(x0=1,x1=2,y0=3,y1=4, d=2.5, t=2)
   y1=y1-t/2;
   hull()
   {
-    translate([x0,y0,0]) halfsphere(d=t);
-    translate([x1,y1,0]) halfsphere(d=t);
-    translate([x0,y1,0]) halfsphere(d=t);
-    translate([x1,y0,0]) halfsphere(d=t);
+    translate([x0,y0,0]) sphere(r=t/2);
+    translate([x1,y1,0]) sphere(r=t/2);
+    translate([x0,y1,0]) sphere(r=t/2);
+    translate([x1,y0,0]) sphere(r=t/2);
   }//hull
 }//box_sides
 
