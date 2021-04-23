@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.3f";
+version="v0.1.3g";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -119,13 +119,13 @@ module i2c_headerS(pins=4, rows=1, x=-12,y=4.25,z=34.5-2.5)
 module box_lower(w=92,h=62,d=7, t=2, tx=34,ty=14,tz=2-0.25, bbox=true)
 {
   dx=(72-92)/2;
-  sx=2*dx+t;
+  sx=2*dx;
   translate([0,0,16.4]) 
   {
     //USB/RJ45 top
-    //translate([-2*dx,0,-5]) box_plane(d=d);
+    translate([92/2+dx,0,-5+d-t-0.5]) box_plane(-sx/2,sx/2-t,-h/2,h/2);
     //USB/RJ45 sides
-    translate([92/2+dx-t/2,0,-5]) box_sides(w=sx,d=d-t+0.123);
+    translate([92/2+dx-t/2,0,-5]) box_sides(w=sx+t,d=d-t+0.123);
     //PCB sides
     translate([dx,0,-5]) box_sides(d=d);
     //colomns
@@ -191,6 +191,31 @@ module box_columns(w=72,h=62,d=2.5, c=6)
   north=h/2;
   screw_columns(east,ouest,south,north, d=d,c=c);
 }//box_columns
+
+//plane for box
+/*
+  x0: east  bbox position
+  x1: ouest bbox position
+  y0: south bbox position
+  y1: north bbox position
+
+  d: depth
+  t: side thickness
+*/
+module box_plane(x0=1,x1=2,y0=3,y1=4, d=2.5, t=2)
+{
+  x0=x0-t/2;
+  x1=x1+t/2;
+  y0=y0+t/2;
+  y1=y1-t/2;
+  hull()
+  {
+    translate([x0,y0,0]) cylinder(d=t,h=d);
+    translate([x1,y1,0]) cylinder(d=t,h=d);
+    translate([x0,y1,0]) cylinder(d=t,h=d);
+    translate([x1,y0,0]) cylinder(d=t,h=d);
+  }//hull
+}//box_sides
 
 //side for box
 /*
