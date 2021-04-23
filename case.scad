@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.0j";
+version="v0.1.0k";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -233,9 +233,9 @@ module open_box_sides(w=72,h=62,d=2.5, d1=12,d2=23, c=6,t=2)
   ouest=-w/2+t/2;
   south=h/2-t/2;
   north=-h/2+t/2;
-  x1=east-23;
+  x1=east-32;
   y1=north+12;
-  x2=23;
+  x2=x1-23;
   box_side(east,ouest,south,south,d,t);
   //box_side(east,ouest,north,north,d,t);
   box_side(east,east,south,north,d,t);
@@ -244,6 +244,9 @@ module open_box_sides(w=72,h=62,d=2.5, d1=12,d2=23, c=6,t=2)
   //box_side(east,ouest,north,north,d,t);
   box_side(east,x1,north,north,d,t);
   box_side(x1,x1,y1,north,d,t);
+  box_side(x1,x2,y1,y1,d,t);
+  box_side(x2,x2,y1,north,d,t);
+  box_side(x2,ouest,north,north,d,t);
 }//open_box_sides
 
 
