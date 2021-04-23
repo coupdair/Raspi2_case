@@ -12,7 +12,11 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.4l";
+version="v0.1.4";
+
+///bounding box
+bbox=false;
+//bbox=true;
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -357,7 +361,7 @@ module box_upper(w=72,h=62,d=12, tx=36-0.25,ty=-7/2,tz=5, bbox=true)
 }//box_upper
 
 ///over box
-module box_cover(w=72,h=62,d=10, bbox=true)
+module box_cover(w=72,h=62,d=10, t=2, bbox=true)
 {
   east=w/2;
   ouest=-w/2;
@@ -366,18 +370,18 @@ module box_cover(w=72,h=62,d=10, bbox=true)
   translate([(72-92)/2,0,16.4+7+2.5+12])
   {
     //top
-    translate([0,0,d-5]) open_box_plane(east,ouest,south,north);
+    translate([0,0,d-5-t/2]) open_box_plane(east,ouest,south,north);
     //sides
-    translate([0,0,-5]) open_box_sides(w,h,d,t);
+    translate([0,0,-5]) open_box_sides(w,h,d-t/2,t);
     //colomns
-    translate([0,0,-5]) screw_columns(east,ouest,south,north,d);
+    translate([0,0,-5]) screw_columns(east,ouest,south,north,d-0.123);
     //bounding box
     if(bbox==true) %obox(w=72,d=d);
   }
 }//box_cover
 
 //RPi4
-//pi4();
+pi4();
 
 //PCB and component margins
 %hull()
@@ -393,21 +397,21 @@ LEMO_HAT(withHeader=true);
 
 //case: stack of boxes
 ///base box (alu. material)
-bbox(d=16.4);
+%bbox(d=16.4);
 ///other boxes for 3D print
-box_lower();
-box_middle();
+box_lower(bbox=bbox);
+box_middle(bbox=bbox);
 //upper box
 /**/
 difference()
 {
-  box_upper();
+  box_upper(bbox=bbox);
 //   for(m=[-0.25,0.25]){translate([(65-85)/2+m,0,21  ]) WS_PoE_PCB();}
 //   for(m=[-0.25,0.25]){translate([(65-85)/2  ,m,21  ]) WS_PoE_PCB();}
    for(m=[-0.25,0.25]){translate([(65-85)/2  ,0,21+m]) WS_PoE_PCB();}
 }//upper box
 /**/
-box_cover();
+box_cover(bbox=bbox);
 
 module devices()
 {
@@ -460,7 +464,7 @@ led(dx=-22, dy=8);
 
 }//devices
 
-//devices();
+devices();
 
 /*
 !projection(){// // // // //
