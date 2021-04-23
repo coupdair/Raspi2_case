@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.4g";
+version="v0.1.4h";
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="top";
@@ -123,7 +123,7 @@ module box_lower(w=92,h=62,d=7, t=2, tx=34,ty=14,tz=2-0.25, bbox=true)
   translate([0,0,16.4]) 
   {
     //USB/RJ45 top
-    translate([92/2+dx,0,-5+d-t/2]) box_plane(-sx/2,sx/2-t,-h/2,h/2);
+#    translate([92/2+dx,0,-5+d-t/2]) box_plane(-sx/2-t,sx/2-t,-h/2+t,h/2-t);
     //USB/RJ45 sides
     translate([92/2+dx-t/2,0,-5]) box_sides(w=sx+t,d=d-t/2);
     //PCB sides
@@ -345,7 +345,7 @@ module box_cover(w=72,h=62,d=10, bbox=true)
   translate([(72-92)/2,0,16.4+7+2.5+12])
   {
     //top
-#    translate([0,0,d-5]) box_plane(east,ouest,south,north);
+    translate([0,0,d-5]) box_plane(east,ouest,south,north);
     //sides
     translate([0,0,-5]) open_box_sides(w,h,d,t);
     //colomns
