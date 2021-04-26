@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.5i";
+version="v0.1.5j";
 
 ///bounding box
 bbox=false;
@@ -420,14 +420,17 @@ difference()
 //cover box
 difference()
 {
+difference()
+{
   box_cover(bbox=bbox);
   for(m=[-0.25,0.25]){translate([(72-92)/2  ,0,16.4+7+2.5+12+m-5]) LEMO_PCB();}
+}
   //devices();
   serial();
   buttons(dr=0.25);
   lemos(dr=0.25);
   leds_soft(dr=0.25);
-//  leds_hard(dr=0.25);
+  leds_hard(dr=0.25);
 }//cover box
 /**/
 
