@@ -40,9 +40,12 @@ make only SLICE=[lower,middle,upper,cover] STL file
 
 ## TODO
 
+- put oLED in projection (and PCB contours and hole only)
 - text with OpenSCAD version higher
 - check sizes: USB, Eth, hole for oLED (PCB <-> cover box)
 - screwing procedure
+- move code to files: box_stack.scad, HAT.scad, devices.scad, LEMO_HAT.scad, ...
+- add make projection, make STL, ...
 
 ## BUG
 
