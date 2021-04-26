@@ -384,7 +384,7 @@ module box_cover(w=72,h=62,d=10, t=2, bbox=true)
 }//box_cover
 
 //RPi4
-pi4();
+%pi4();
 
 //PCB and component margins
 %hull()
@@ -406,7 +406,8 @@ LEMO_HAT(withHeader=true);
 difference()
 {
   box_lower(bbox=bbox);
-  //USB/RJ45 with margin=0.25);
+  //USB/RJ45 with margin=0.25
+  pi4_Eth(bbox=true,margin=0.25,plug=12);
 }
 box_middle(bbox=bbox);
 //upper box
