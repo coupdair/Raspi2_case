@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.5h";
+version="v0.1.5i";
 
 ///bounding box
 bbox=false;
@@ -59,8 +59,9 @@ module obox(w=92,h=62,d=16.4, do=17.5,wo=26,ho=11, m=0.5,hm=2.5)
   l: length
   h: height
 */
-module lemo(l=17.5,r=3.5,b=7, x=9,y=16,z=33, dx=0,dy=0)
+module lemo(l=17.5,r=3.5,b=7, x=9,y=16,z=33, dx=0,dy=0, dr=0)
 {
+  r=r+dr;
   translate([x,y+dy,z+dx]) rotate([0,90,0]) cylinder(r=r, h=l);
   translate([x,y-b/2+dy,z-b/2+dx]) cube([b,b,b]);
 }//lemo
@@ -81,8 +82,9 @@ module button(l=10,r=3,b=5,h=2.54,bh=1.23, x=-16,y=-12,z=33.5, dx=0,dy=0, dr=0)
 /*
   r: radius
 */
-module led(r=1.5,h=9, x=-16,y=0,z=43, dx=0,dy=0, space=0.123)
+module led(r=1.5,h=9, x=-16,y=0,z=43, dx=0,dy=0, space=0.123, dr=0)
 {
+  r=r+dr;
   translate([x+dx,y+dy,z])
   {
     sphere(r=r);
@@ -423,14 +425,9 @@ difference()
   //devices();
   serial();
   buttons(dr=0.25);
-
-  lemo(dx=5,dy=0);
-  lemo(dx=5,dy=-16);
-  lemo(dx=5,dy=-32);
-  
-  led(dx=-22, dy=16);
-  led(dx=-22, dy=8);
-
+  lemos(dr=0.25);
+  leds_soft(dr=0.25);
+//  leds_hard(dr=0.25);
 }//cover box
 /**/
 
@@ -444,52 +441,46 @@ module buttons(dr=0)
   button(dx=-15, dr=dr);
 }//buttons
 
+module lemos(dr=0)
+{
+  //lemo();
+  lemo(dx=5,dy=0,   dr=dr);
+  lemo(dx=5,dy=-16, dr=dr);
+  lemo(dx=5,dy=-32, dr=dr);
+}//lemos
+
+module leds_soft(dr=0)
+{
+  //led();
+  led(dx=5,   dr=dr);
+  led(dx=-5,  dr=dr);
+  led(dx=15,  dr=dr);
+  led(dx=-15, dr=dr);
+}//leds_soft
+
+module leds_hard(dr=0)
+{
+  //led();
+  led(dx=-22, dy=16, dr=dr);
+  led(dx=-22, dy=8,  dr=dr);
+}//leds_hard
 
 module devices()
 {
-
 //UART
 serial();
-
 //I2C#1 header
 i2c_header();
-
 //I2C#3 header
 i2c_headerS();
-
 //lemo
-color("gray")
-{
-//lemo();
-lemo(dx=5,dy=0);
-lemo(dx=5,dy=-16);
-lemo(dx=5,dy=-32);
-}//lemo
-
+color("gray") lemos();
 //button
-color("red")
-{
-  buttons();
-}//button
-
+color("red") buttons();
 //led
-color("green")
-{
-//led();
-led(dx=5);
-led(dx=-5);
-led(dx=15);
-led(dx=-15);
-}//led
-
+color("green") leds_soft();
 //power led
-color("orange")
-{
-//led();
-led(dx=-22, dy=16);
-led(dx=-22, dy=8);
-}//led
-
+color("orange") leds_hard();
 }//devices
 
 //devices();
