@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.6e";
+version="v0.1.6";
 
 ///bounding box
 bbox=false;
@@ -384,14 +384,16 @@ module box_cover(w=72,h=62,d=10, t=2, bbox=true)
 }//box_cover
 
 //RPi4
-%pi4();
+pi4();
 
 //PCB and component margins
-%hull()
+/** /
+hull()
 {
   piB_PCB();
   translate([0,0,6.54321]) piB_PCB();
 }
+/**/
 
 //PoE HAT
 translate([(65-85)/2,0,21]) WS_PoE_PCB();
@@ -399,27 +401,33 @@ translate([(65-85)/2,0,21]) WS_PoE_PCB();
 LEMO_HAT(withHeader=true);
 
 //case: stack of boxes
+/**/
 ///base box (alu. material)
-%bbox(d=16.4);
+%difference()
+{
+  bbox(d=16.4);
+  pi4_Eth(bbox=true,margin=0.25,plug=12);
+  pi4_USB23(bbox=true,margin=0.25,plug=12);
+}//base box
 ///other boxes for 3D print
 /**/
-difference()
+%difference()
 {
   box_lower(bbox=bbox);
   pi4_Eth(bbox=true,margin=0.25,plug=12);
   pi4_USB23(bbox=true,margin=0.25,plug=12);
 }//lower box
-box_middle(bbox=bbox);
+%box_middle(bbox=bbox);
 //upper box
 /**/
-difference()
+%difference()
 {
   box_upper(bbox=bbox);
   translate([(65-85)/2  ,0,21+m]) WS_PoE_PCB();
 }//upper box
 /**/
 //cover box
-difference()
+%difference()
 {
   box_cover(bbox=bbox);
 //  for(m=[-0.25,0.25]){translate([(72-92)/2  ,0,16.4+7+2.5+12+m-5]) LEMO_PCB();}
@@ -487,9 +495,9 @@ color("orange") leds_hard();
 
 devices();
 
-/*
+/**/
 !projection(){// // // // //
 devices();
 translate([100,0,0]) LEMO_PCB();
 }//projection// // // // //
-*/
+/**/

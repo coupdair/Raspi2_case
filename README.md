@@ -35,3 +35,15 @@ make STL files
 make only SLICE=[lower,middle,upper,cover] STL file
 
 `make $SLICE`, e.g. `make cover`
+
+# dev.
+
+## TODO
+
+- text with OpenSCAD version higher
+- check sizes: USB, Eth, hole for oLED (PCB <-> cover box)
+- screwing procedure
+
+## BUG
+
+- cover box without PCB diff. (too much objects, choose either PCB or LED difference, not both)
