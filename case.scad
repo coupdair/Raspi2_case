@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.5f";
+version="v0.1.5g";
 
 ///bounding box
 bbox=false;
@@ -402,7 +402,7 @@ LEMO_HAT(withHeader=true);
 //box_lower(bbox=bbox);
 //box_middle(bbox=bbox);
 //upper box
-/**/
+/** /
 difference()
 {
   box_upper(bbox=bbox);
@@ -413,12 +413,22 @@ difference()
     translate([(65-85)/2  ,0,21+m]) WS_PoE_PCB();
   }//for loop
 }//upper box
-/** /
+/**/
 //cover box
 difference()
 {
   box_cover(bbox=bbox);
   for(m=[-0.25,0.25]){translate([(72-92)/2  ,0,16.4+7+2.5+12+m-5]) LEMO_PCB();}
+  //devices();
+  serial();
+
+  lemo(dx=5,dy=0);
+  lemo(dx=5,dy=-16);
+  lemo(dx=5,dy=-32);
+  
+  led(dx=-22, dy=16);
+  led(dx=-22, dy=8);
+
 }//cover box
 /**/
 
@@ -473,7 +483,7 @@ led(dx=-22, dy=8);
 
 }//devices
 
-devices();
+//devices();
 
 /*
 !projection(){// // // // //
