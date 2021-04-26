@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.5k";
+version="v0.1.5l";
 
 ///bounding box
 bbox=false;
@@ -107,9 +107,9 @@ module serial(w=3*2.5,h=2.5,d=14, space=-0.3, x=7.5+2*2.5-42.5,y=24.5,z=34.5)
   l: length
   h: height
 */
-module i2c_header(pins=3, rows=2, x=19,y=4.25,z=34.5+1)
+module i2c_header(pins=3, rows=2, x=19,y=4.25,z=34.5+1, bbox=false, margin=0)
 {
-  translate([x,y,z]) rotate([90,0,90]) header(pins, rows);
+  translate([x,y,z]) rotate([90,0,90]) header(pins, rows, bbox=bbox, margin=0);
 }//i2c_header
 
 //I2C header software
@@ -117,9 +117,9 @@ module i2c_header(pins=3, rows=2, x=19,y=4.25,z=34.5+1)
   l: length
   h: height
 */
-module i2c_headerS(pins=4, rows=1, x=-12,y=4.25,z=34.5-2.5)
+module i2c_headerS(pins=4, rows=1, x=-12,y=4.25,z=34.5-2.5, bbox=false, margin=0)
 {
-  translate([x,y,z]) rotate([270,0,90]) header(pins, rows);
+  translate([x,y,z]) rotate([270,0,90]) header(pins, rows, bbox=bbox, margin=0);
 }//i2c_headerS
 
 ///lower box
@@ -424,6 +424,7 @@ difference()
 //  for(m=[-0.25,0.25]){translate([(72-92)/2  ,0,16.4+7+2.5+12+m-5]) LEMO_PCB();}
   //devices();
   serial();
+  i2c_header(bbox=true,margin=0.25);
   buttons(dr=0.25);
   lemos(dr=0.25);
   leds_soft(dr=0.25);
@@ -483,7 +484,7 @@ color("green") leds_soft();
 color("orange") leds_hard();
 }//devices
 
-//devices();
+devices();
 
 /*
 !projection(){// // // // //
