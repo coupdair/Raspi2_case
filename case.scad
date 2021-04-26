@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.6d";
+version="v0.1.6e";
 
 ///bounding box
 bbox=false;
@@ -406,9 +406,9 @@ LEMO_HAT(withHeader=true);
 difference()
 {
   box_lower(bbox=bbox);
-  //USB/RJ45 with margin=0.25
   pi4_Eth(bbox=true,margin=0.25,plug=12);
-}
+  pi4_USB23(bbox=true,margin=0.25,plug=12);
+}//lower box
 box_middle(bbox=bbox);
 //upper box
 /**/
