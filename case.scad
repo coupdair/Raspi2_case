@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.5l";
+version="v0.1.5m";
 
 ///bounding box
 bbox=false;
@@ -97,9 +97,9 @@ module led(r=1.5,h=9, x=-16,y=0,z=43, dx=0,dy=0, space=0.123, dr=0)
   l: length
   h: height
 */
-module serial(w=3*2.5,h=2.5,d=14, space=-0.3, x=7.5+2*2.5-42.5,y=24.5,z=34.5)
+module serial(w=3*2.5,h=2.5,d=14, space=-0.3, x=7.5+2*2.5-42.5,y=24.5,z=34.5, margin=0)
 {
-  color("gray") translate([x,y,z+space]) cube([w,h,d]);
+  translate([x-margin,y-margin,z+space-margin]) cube([w+margin*2,h+margin*2,d+margin*2]);
 }//serial
 
 //I2C header driver
@@ -423,7 +423,7 @@ difference()
   box_cover(bbox=bbox);
 //  for(m=[-0.25,0.25]){translate([(72-92)/2  ,0,16.4+7+2.5+12+m-5]) LEMO_PCB();}
   //devices();
-  serial();
+  serial(margin=0.25);
   i2c_header(bbox=true,margin=0.25);
   buttons(dr=0.25);
   lemos(dr=0.25);
@@ -469,7 +469,7 @@ module leds_hard(dr=0)
 module devices()
 {
 //UART
-serial();
+color("gray") serial();
 //I2C#1 header
 i2c_header();
 //I2C#3 header
