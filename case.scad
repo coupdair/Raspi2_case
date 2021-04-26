@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.5g";
+version="v0.1.5h";
 
 ///bounding box
 bbox=false;
@@ -70,8 +70,9 @@ module lemo(l=17.5,r=3.5,b=7, x=9,y=16,z=33, dx=0,dy=0)
   l: length
   h: height
 */
-module button(l=10,r=3,b=5,h=2.54,bh=1.23, x=-16,y=-12,z=33.5, dx=0,dy=0)
+module button(l=10,r=3,b=5,h=2.54,bh=1.23, x=-16,y=-12,z=33.5, dx=0,dy=0, dr=0)
 {
+  r=r+dr;
   translate([x+dx,y+dy,z+h+bh]) cylinder(r=r, h=l-h-bh);
   translate([x-b/2+dx,y-b/2+dy,z]) cube([b,b,h]);
 }//button
@@ -421,6 +422,7 @@ difference()
   for(m=[-0.25,0.25]){translate([(72-92)/2  ,0,16.4+7+2.5+12+m-5]) LEMO_PCB();}
   //devices();
   serial();
+  buttons(dr=0.25);
 
   lemo(dx=5,dy=0);
   lemo(dx=5,dy=-16);
@@ -431,6 +433,17 @@ difference()
 
 }//cover box
 /**/
+
+//devices
+module buttons(dr=0)
+{
+//button();
+  button(dx=5,   dr=dr);
+  button(dx=-5,  dr=dr);
+  button(dx=15,  dr=dr);
+  button(dx=-15, dr=dr);
+}//buttons
+
 
 module devices()
 {
@@ -456,11 +469,7 @@ lemo(dx=5,dy=-32);
 //button
 color("red")
 {
-//button();
-button(dx=5);
-button(dx=-5);
-button(dx=15);
-button(dx=-15);
+  buttons();
 }//button
 
 //led
