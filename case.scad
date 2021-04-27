@@ -12,15 +12,15 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.7g";
+version="v0.1.7h";
 
 ///bounding box
 bbox=false;
 //bbox=true;
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
-BOX="cover";
-//BOX="upper";
+//BOX="cover";
+BOX="upper";
 //BOX="middle";
 //BOX="lower";
 //BOX="base";
@@ -466,3 +466,11 @@ difference()
 }//difference
 }//cover box
 
+if( BOX=="upper" || BOX=="full" )
+{//upper box
+difference()
+{
+  box_upper(bbox=bbox);
+  translate([(65-85)/2  ,0,21+m]) WS_PoE_PCB();
+}//difference
+}//upper box
