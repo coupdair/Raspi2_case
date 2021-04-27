@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.7i";
+version="v0.1.7j";
 
 ///bounding box
 bbox=false;
@@ -20,12 +20,12 @@ bbox=false;
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="cover";
-//BOX="upper";
+BOX="upper";
 //BOX="middle";
 //BOX="lower";
 //BOX="base";
 //BOX="projection";
-BOX="full";
+//BOX="full";
 
 //boundary box
 /*
@@ -449,8 +449,8 @@ if(BOX=="projection")
 }//projection render
 
 if( BOX=="cover" || BOX=="full" )
-{
-  devices();
+{//cover box
+//  devices();
 //cover box
 difference()
 {
@@ -471,7 +471,7 @@ if( BOX=="upper" || BOX=="full" )
 difference()
 {
   box_upper(bbox=bbox);
-  translate([(65-85)/2  ,0,21+m]) WS_PoE_PCB();
+  for(m=[-0.25,0.25]){translate([(65-85)/2  ,0,21+m]) WS_PoE_PCB();}
 }//difference
 }//upper box
 
@@ -479,3 +479,13 @@ if( BOX=="middle" || BOX=="full" )
 {//middle box
 box_middle(bbox=bbox);
 }//middle box
+
+if( BOX=="lower" || BOX=="full" )
+{//lower box
+difference()
+{
+  box_lower(bbox=bbox);
+  pi4_Eth(bbox=true,margin=0.25,plug=12);
+  pi4_USB23(bbox=true,margin=0.25,plug=12);
+}//difference
+}//lower box
