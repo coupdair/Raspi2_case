@@ -11,13 +11,13 @@ all: version
 	$(BIN) --render --imgsize=$(VIEW_SIZE) -o $@ $<
 version:
 	grep version case.scad | head -n 1 | cut -d'=' -f2 | sed "s/\"//g;s/;//g" | tee VERSION
-	openscad --version | cut -d' ' -f3 | tee -a VERSION
+	openscad --version 2>&1 | cut -d' ' -f3 | tee -a VERSION
 
-#top: case.stl case.png
-top: version
-	$(BIN) -D 'BOX="top"' -o box_TOP.stl case.scad
-#	mv case.png case_TOP.png
-#	display case_TOP.png &
+#cover: case.stl case.png
+cover: version
+	$(BIN) -D 'BOX="cover"' -o box_cover.stl case.scad
+#	mv case.png case_cover.png
+#	display case_cover.png &
 
 bottom: version
 	$(BIN) -D 'BOX="bottom"' -o box_bottom.stl case.scad
