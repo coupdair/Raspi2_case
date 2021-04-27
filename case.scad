@@ -12,16 +12,20 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.6";
+version="v0.1.7d";
 
 ///bounding box
 bbox=false;
 //bbox=true;
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
-//BOX="top";
-//BOX="bottom";
-BOX="full";
+//BOX="cover";
+//BOX="upper";
+//BOX="middle";
+//BOX="lower";
+//BOX="base";
+BOX="projection";
+//BOX="full";
 
 //boundary box
 /*
@@ -383,64 +387,6 @@ module box_cover(w=72,h=62,d=10, t=2, bbox=true)
   }
 }//box_cover
 
-//RPi4
-pi4();
-
-//PCB and component margins
-/** /
-hull()
-{
-  piB_PCB();
-  translate([0,0,6.54321]) piB_PCB();
-}
-/**/
-
-//PoE HAT
-translate([(65-85)/2,0,21]) WS_PoE_PCB();
-//LEMO HAT
-LEMO_HAT(withHeader=true);
-
-//case: stack of boxes
-/**/
-///base box (alu. material)
-%difference()
-{
-  bbox(d=16.4);
-  pi4_Eth(bbox=true,margin=0.25,plug=12);
-  pi4_USB23(bbox=true,margin=0.25,plug=12);
-}//base box
-///other boxes for 3D print
-/**/
-%difference()
-{
-  box_lower(bbox=bbox);
-  pi4_Eth(bbox=true,margin=0.25,plug=12);
-  pi4_USB23(bbox=true,margin=0.25,plug=12);
-}//lower box
-%box_middle(bbox=bbox);
-//upper box
-/**/
-%difference()
-{
-  box_upper(bbox=bbox);
-  translate([(65-85)/2  ,0,21+m]) WS_PoE_PCB();
-}//upper box
-/**/
-//cover box
-%difference()
-{
-  box_cover(bbox=bbox);
-//  for(m=[-0.25,0.25]){translate([(72-92)/2  ,0,16.4+7+2.5+12+m-5]) LEMO_PCB();}
-  //devices();
-  serial(margin=0.25);
-  i2c_header(bbox=true,margin=0.25);
-  buttons(dr=0.25);
-  lemos(dr=0.25);
-  leds_soft(dr=0.25);
-  leds_hard(dr=0.25);
-}//cover box
-/**/
-
 //devices
 module buttons(dr=0)
 {
@@ -493,11 +439,75 @@ color("green") leds_soft();
 color("orange") leds_hard();
 }//devices
 
-devices();
+if(BOX=="projection")
+{
+  projection()
+  {
+    devices();
+    translate([100,0,0]) LEMO_PCB();
+  }//projection
+}//projection render
+else
+{//other render
 
+//RPi4
+pi4();
+
+//PCB and component margins
+/** /
+hull()
+{
+  piB_PCB();
+  translate([0,0,6.54321]) piB_PCB();
+}
 /**/
-!projection(){// // // // //
+
+//PoE HAT
+translate([(65-85)/2,0,21]) WS_PoE_PCB();
+//LEMO HAT
+LEMO_HAT(withHeader=true);
+
+//case: stack of boxes
+/**/
+///base box (alu. material)
+%difference()
+{
+  bbox(d=16.4);
+  pi4_Eth(bbox=true,margin=0.25,plug=12);
+  pi4_USB23(bbox=true,margin=0.25,plug=12);
+}//base box
+
+///other boxes for 3D print
+/**/
+%difference()
+{
+  box_lower(bbox=bbox);
+  pi4_Eth(bbox=true,margin=0.25,plug=12);
+  pi4_USB23(bbox=true,margin=0.25,plug=12);
+}//lower box
+%box_middle(bbox=bbox);
+//upper box
+/**/
+%difference()
+{
+  box_upper(bbox=bbox);
+  translate([(65-85)/2  ,0,21+m]) WS_PoE_PCB();
+}//upper box
+/**/
+//cover box
+%difference()
+{
+  box_cover(bbox=bbox);
+//  for(m=[-0.25,0.25]){translate([(72-92)/2  ,0,16.4+7+2.5+12+m-5]) LEMO_PCB();}
+  //devices();
+  serial(margin=0.25);
+  i2c_header(bbox=true,margin=0.25);
+  buttons(dr=0.25);
+  lemos(dr=0.25);
+  leds_soft(dr=0.25);
+  leds_hard(dr=0.25);
+}//cover box
+/**/
+
 devices();
-translate([100,0,0]) LEMO_PCB();
-}//projection// // // // //
-/**/
+}//other render
