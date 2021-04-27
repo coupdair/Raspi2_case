@@ -66,6 +66,8 @@ make only SLICE=[lower,middle,upper,cover] STL file
 
 - _ move code to files: box_stack.scad, HAT.scad, devices.scad, LEMO_HAT.scad, ...
 - _ add make projection, make STL, ...
+- _ add handles on lower box for mechanical fixing, e.g. 2 M6 screws on sides close to middle box screws.
 
 ## BUG
 
+- OpenSCAD 2015.03: after many F5 render, empty render, but F6 is ok, reload OpenSCAD !
