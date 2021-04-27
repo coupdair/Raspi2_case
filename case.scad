@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.7d";
+version="v0.1.7e";
 
 ///bounding box
 bbox=false;
@@ -24,8 +24,8 @@ bbox=false;
 //BOX="middle";
 //BOX="lower";
 //BOX="base";
-BOX="projection";
-//BOX="full";
+//BOX="projection";
+BOX="full";
 
 //boundary box
 /*
@@ -449,7 +449,7 @@ if(BOX=="projection")
 }//projection render
 else
 {//other render
-
+   
 //RPi4
 pi4();
 
@@ -470,7 +470,7 @@ LEMO_HAT(withHeader=true);
 //case: stack of boxes
 /**/
 ///base box (alu. material)
-%difference()
+difference()
 {
   bbox(d=16.4);
   pi4_Eth(bbox=true,margin=0.25,plug=12);
@@ -479,23 +479,23 @@ LEMO_HAT(withHeader=true);
 
 ///other boxes for 3D print
 /**/
-%difference()
+difference()
 {
   box_lower(bbox=bbox);
   pi4_Eth(bbox=true,margin=0.25,plug=12);
   pi4_USB23(bbox=true,margin=0.25,plug=12);
 }//lower box
-%box_middle(bbox=bbox);
+box_middle(bbox=bbox);
 //upper box
 /**/
-%difference()
+difference()
 {
   box_upper(bbox=bbox);
   translate([(65-85)/2  ,0,21+m]) WS_PoE_PCB();
 }//upper box
 /**/
 //cover box
-%difference()
+difference()
 {
   box_cover(bbox=bbox);
 //  for(m=[-0.25,0.25]){translate([(72-92)/2  ,0,16.4+7+2.5+12+m-5]) LEMO_PCB();}
