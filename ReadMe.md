@@ -44,9 +44,8 @@ make only SLICE=[lower,middle,upper,cover] STL file
 
 # DONE
 
-- v add BOX variable for projection, full, cover, ...
-- v on 2015.03-2, cover box with PCB diff.
-- v STL: "make cover" do "box_cover.stl" file
+- v STL: "make lower" do "box_lower.stl" file
+- v text with OpenSCAD version 2015.03-2
 
 ## TODO
 
@@ -58,7 +57,6 @@ make only SLICE=[lower,middle,upper,cover] STL file
 
 ### medium priority
 
-- . text with OpenSCAD version higher
 - _ check sizes: USB, Eth, hole for oLED (PCB <-> cover box)
 - _ screwing procedure
 

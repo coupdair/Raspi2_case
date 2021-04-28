@@ -19,6 +19,9 @@ cover: version
 #	mv case.png case_cover.png
 #	display case_cover.png &
 
+lower: version
+	$(BIN) -D 'BOX="lower"' -o box_lower.stl case.scad
+
 bottom: version
 	$(BIN) -D 'BOX="bottom"' -o box_bottom.stl case.scad
 

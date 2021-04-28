@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.8i";
+version="v0.1.8";
 
 ///bounding box
 bbox=false;
@@ -24,7 +24,7 @@ bbox=false;
 //BOX="middle";
 BOX="lower";
 //BOX="projection";
-BOX="full";
+//BOX="full";
 
 //boundary box
 /*
@@ -110,7 +110,7 @@ module serial(w=3*2.5,h=2.5,d=14, space=-0.3, x=7.5+2*2.5-42.5,y=24.5,z=34.5, ma
   l: length
   h: height
 */
-module i2c_header(pins=3, rows=2, x=19,y=4.25,z=34.5+1, bbox=false, margin=0)
+module i2c_header(pins=3, rows=2, x=19,y=4.25-16,z=34.5+1, bbox=false, margin=0)
 {
   translate([x,y,z]) rotate([90,0,90]) header(pins, rows, bbox=bbox, margin=0);
 }//i2c_header
