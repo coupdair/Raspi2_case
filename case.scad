@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.9d";
+version="v0.1.9e";
 
 ///bounding box
 bbox=false;
@@ -24,7 +24,7 @@ BOX="cover";
 //BOX="middle";
 //BOX="lower";
 //BOX="projection";
-//BOX="full";
+BOX="full";
 
 //boundary box
 /*
@@ -264,6 +264,28 @@ module open_box_plane(east=12,ouest=23,south=34,north=45, wo=26, d=2.5, t=2)
   box_plane(x2,ouest,south,north);
 }//open_box_plane
 
+//handle for box
+/*
+  d: box depth
+  c: column diameter
+  s: screw hole diameter
+*/
+module box_handle(d=2.5, c=12,s=6)
+{
+  epsilon=0.123;
+  difference()
+  {
+    hull()
+    {
+      translate([-c/2,0,0])cube([c,c,d]);
+      cylinder(r=c/2,h=d);
+    }
+    translate([0,0,-epsilon]) cylinder(r=s/2,h=d+2*epsilon);
+  }//difference
+}//box_handle
+
+! box_handle();
+
 //side for box
 /*
   x0: east  bbox position
@@ -281,7 +303,7 @@ module box_side(x0,x1,y0,y1, d=2.5, t=2)
     translate([x0,y0,0]) cylinder(d=t,h=d);
     translate([x1,y1,0]) cylinder(d=t,h=d);
   }//hull
-}//box_sides
+}//box_side
 //4 sides for box
 /*
   w: width
