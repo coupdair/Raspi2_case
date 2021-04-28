@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.8g";
+version="v0.1.8h";
 
 ///bounding box
 bbox=false;
@@ -151,6 +151,7 @@ module box_lower(w=92,h=62,d=7, t=2, tx=43,ty=11,tz=-2.5, bbox=true)
 //      cube([10,10,0.5]);//bb
       ///PoE
       linear_extrude(height=-2*tz) text(text="PoE",size=6);
+      translate([9,1.5,0]) rotate([0,0,180]) linear_extrude(height=-2*tz) text(text="^",size=4);
       ///reset
       translate([0.5,11,0]) linear_extrude(height=-2*tz) text(text="rêset",size=5);
       ///I2C
