@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.8d";
+version="v0.1.8e";
 
 ///bounding box
 bbox=false;
@@ -132,20 +132,27 @@ module box_lower(w=92,h=62,d=7, t=2, tx=43,ty=11,tz=-2.5, bbox=true)
   sx=-2*dx;
   translate([0,0,16.4]) 
   {
-    //USB/RJ45 top
-    translate([92/2+dx,0,-5+d-t/2]) box_plane(-sx/2-t,sx/2-t,-h/2+t,h/2-t);
-    //USB/RJ45 sides
-    translate([92/2+dx-t/2,0,-5]) box_sides(w=sx+t,d=d-t/2);
-    //PCB sides
-    translate([dx,0,-5]) box_sides(d=d);
-    //colomns
-    translate([dx,0,-5]) box_columns(d=d);
-    //bounding box
-    if(bbox==true) %bbox(d=d);
+    difference()
+    {
+	union()
+	{
+      //USB/RJ45 top
+      translate([92/2+dx,0,-5+d-t/2]) box_plane(-sx/2-t,sx/2-t,-h/2+t,h/2-t);
+      //USB/RJ45 sides
+      translate([92/2+dx-t/2,0,-5]) box_sides(w=sx+t,d=d-t/2);
+      //PCB sides
+      translate([dx,0,-5]) box_sides(d=d);
+      //colomns
+      translate([dx,0,-5]) box_columns(d=d);
+    }//box union
+    //text
     ///PoE
     color("Violet") translate([tx,ty,tz]) rotate([0,0,90])
 //      cube([10,10,0.5]);//bb
       linear_extrude(height=-2*tz) text(text="PoE",size=6);
+    }//text difference
+    //bounding box
+    if(bbox==true) %bbox(d=d);
   }
 }//box_lower
 
