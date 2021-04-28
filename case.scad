@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.9f";
+version="v0.1.9g";
 
 ///bounding box
 bbox=false;
@@ -22,9 +22,9 @@ bbox=false;
 BOX="cover";
 //BOX="upper";
 //BOX="middle";
-//BOX="lower";
+BOX="lower";
 //BOX="projection";
-BOX="full";
+//BOX="full";
 
 //boundary box
 /*
@@ -144,6 +144,8 @@ module box_lower(w=92,h=62,d=7, t=2, tx=43,ty=11,tz=-2.5, bbox=true)
       translate([dx,0,-5]) box_sides(d=d);
       //colomns
       translate([dx,0,-5]) box_columns(d=d);
+      //handles
+      box_handles(east=-w/2,ouest=w/2,south=-h/2,north=h/2, d=d);
     }//box union
     //text
     color("Violet") translate([tx,ty,tz]) rotate([0,0,90])
@@ -296,19 +298,21 @@ module box_handle(d=2.5, c=12,s=6)
 */
 module box_handles(east=-30,ouest=30,south=-30,north=30, d=2.5,c=12)
 {
-  dx=c+1.0;
-  dy=c+0.5;
+  dx=c+1.0+3;
+  dy=c+0.5-21;
   east=east+dx;
   ouest=ouest-dx;
   south=south+dy;
   north=north-dy;
 //  box_handle(d=d);
-  translate([east ,south,0]) rotate([0,0,0])   box_handle(d=d);
-  translate([ouest,south,0]) rotate([0,0,0])  box_handle(d=d);
-  translate([ouest,north,0]) rotate([0,0,180]) box_handle(d=d);
-  translate([east ,north,0]) rotate([0,0,180]) box_handle(d=d);
+  translate([-10,0,-5])
+  {
+    translate([east ,south,0]) rotate([0,0,0])   box_handle(d=d);
+    translate([ouest,south,0]) rotate([0,0,0])  box_handle(d=d);
+    translate([ouest,north,0]) rotate([0,0,180]) box_handle(d=d);
+    translate([east ,north,0]) rotate([0,0,180]) box_handle(d=d);
+  }
 }//box_handles
-!box_handles();
 
 //side for box
 /*
