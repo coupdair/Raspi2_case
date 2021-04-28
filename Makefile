@@ -1,12 +1,12 @@
 BIN=openscad
-VIEW_SIZE=256,256
+VIEW_SIZE=512,512
 
-#all: version top bottom
-all: version
+all: stl
 
 #%.stl: %.scad
 #	$(BIN) -o $@ $<
 
+#need 2015.03
 %.png: %.scad
 	$(BIN) --render --imgsize=$(VIEW_SIZE) -o $@ $<
 
@@ -32,8 +32,11 @@ lower: version
 stl: cover upper middle lower
 	make version
 
+projection: version
+	$(BIN) -D 'BOX="projection"' -o projection.dxf case.scad
+
 box: version case.png
-	$(BIN) -D 'BOX="all"' -o box.stl case.scad
+	$(BIN) -D 'BOX="full"' -o box.stl case.scad
 
 design:
 	openscad case.scad &
