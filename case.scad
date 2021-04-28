@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.7";
+version="v0.1.8d";
 
 ///bounding box
 bbox=false;
@@ -22,9 +22,9 @@ bbox=false;
 //BOX="cover";
 //BOX="upper";
 //BOX="middle";
-//BOX="lower";
+BOX="lower";
 //BOX="projection";
-BOX="full";
+//BOX="full";
 
 //boundary box
 /*
@@ -126,7 +126,7 @@ module i2c_headerS(pins=4, rows=1, x=-12,y=4.25,z=34.5-2.5, bbox=false, margin=0
 }//i2c_headerS
 
 ///lower box
-module box_lower(w=92,h=62,d=7, t=2, tx=34,ty=14,tz=2-0.25, bbox=true)
+module box_lower(w=92,h=62,d=7, t=2, tx=43,ty=11,tz=-2.5, bbox=true)
 {
   dx=(72-92)/2;
   sx=-2*dx;
@@ -143,9 +143,9 @@ module box_lower(w=92,h=62,d=7, t=2, tx=34,ty=14,tz=2-0.25, bbox=true)
     //bounding box
     if(bbox==true) %bbox(d=d);
     ///PoE
-    color("Violet") translate([tx,ty,tz]) rotate([0,0,0])
-      cube([10,10,0.5]);//bb
-//      linear_extrude(height = 0.5) text(text="PoE");
+    color("Violet") translate([tx,ty,tz]) rotate([0,0,90])
+//      cube([10,10,0.5]);//bb
+      linear_extrude(height=-2*tz) text(text="PoE",size=6);
   }
 }//box_lower
 
