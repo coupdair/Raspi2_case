@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.8h";
+version="v0.1.8i";
 
 ///bounding box
 bbox=false;
@@ -24,7 +24,7 @@ bbox=false;
 //BOX="middle";
 BOX="lower";
 //BOX="projection";
-//BOX="full";
+BOX="full";
 
 //boundary box
 /*
@@ -369,15 +369,6 @@ module box_upper(w=72,h=62,d=12, tx=36-0.25,ty=-7/2,tz=5, bbox=true)
 //    box_columns(w,h,d, c);//debug ?!
     //bounding box
     if(bbox==true) %obox(w=72,d=12);
-    //labels
-    ///I2C//data/clock
-    color("Violet") translate([tx,ty,tz]) rotate([0,90,0])
-      cube([10,16+2*(7/2),0.5]);//bb
-//      linear_extrude(height = 0.5) text(text="I2C\ndata clock");
-    ///reset
-    color("Violet") translate([tx,ty-16-4,tz]) rotate([0,90,0])
-      cube([5,16,0.5]);//bb
-//    linear_extrude(height = 0.5) text(text="reset");
   }
 }//box_upper
 
