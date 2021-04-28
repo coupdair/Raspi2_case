@@ -44,8 +44,7 @@ make only SLICE=[lower,middle,upper,cover] STL file
 
 # DONE
 
-- v STL: "make lower" do "box_lower.stl" file
-- v text with OpenSCAD version 2015.03-2
+- v add handles on lower box for mechanical fixing, e.g. 2 M6 screws on sides close to middle box screws.
 
 ## TODO
 
@@ -64,7 +63,7 @@ make only SLICE=[lower,middle,upper,cover] STL file
 
 - _ move code to files: box_stack.scad, HAT.scad, devices.scad, LEMO_HAT.scad, ...
 - _ add make projection, make STL, ...
-- _ add handles on lower box for mechanical fixing, e.g. 2 M6 screws on sides close to middle box screws.
+- _ design version text for all boxes (print on hidden side !)
 
 ## BUG
 
