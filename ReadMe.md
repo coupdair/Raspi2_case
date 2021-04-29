@@ -20,7 +20,7 @@ Raspberry Pi4 case in openscad
 
 ![lower](box_lower.png)
 
-![commercial base](base_box.png)
+![commercial base](base_box.jpg)
 
 # print
 
@@ -34,17 +34,19 @@ make STL files
 
 ## stack
 
-WinP
-
 make only SLICE=[lower,middle,upper,cover] STL file
 
 `make $SLICE`, e.g. `make cover`
+
+## foot print
+
+`make projection`
 
 # dev.
 
 # DONE
 
-- v minkowski on PCB differences (instead of for(m... ) + fast operation in library
+- . add make projection, make STL, ...
 
 ## TODO
 
@@ -61,7 +63,6 @@ make only SLICE=[lower,middle,upper,cover] STL file
 ### low priority
 
 - _ move code to files: box_stack.scad, HAT.scad, devices.scad, LEMO_HAT.scad, ...
-- _ add make projection, make STL, ...
 - _ design version text for all boxes (print on hidden side !)
 
 ## BUG

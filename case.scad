@@ -20,8 +20,8 @@ bbox=false;
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="cover";
-BOX="upper";
-//BOX="middle";
+//BOX="upper";
+BOX="middle";
 //BOX="lower";
 //BOX="projection";
 //BOX="full";
