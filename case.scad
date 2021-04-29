@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.2.0f";
+version="v0.2.0";
 
 ///bounding box
 bbox=false;

@@ -44,13 +44,12 @@ make only SLICE=[lower,middle,upper,cover] STL file
 
 # DONE
 
-- v add handles on lower box for mechanical fixing, e.g. 2 M6 screws on sides close to middle box screws.
+- v minkowski on PCB differences (instead of for(m... ) + fast operation in library
 
 ## TODO
 
 ### high priority
 
-- . minkowski on PCB differences (instead of for(m... )
 - _ add temperature probe holer on lower box
 - . put oLED in projection (and PCB contours and hole only)
 
