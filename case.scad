@@ -12,19 +12,19 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.2.0d";
+version="v0.2.0e";
 
 ///bounding box
 bbox=false;
 //bbox=true;
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
-//BOX="cover";
+BOX="cover";
 //BOX="upper";
 //BOX="middle";
-BOX="lower";
+//BOX="lower";
 //BOX="projection";
-BOX="full";
+//BOX="full";
 
 //boundary box
 /*
@@ -510,7 +510,7 @@ if( BOX=="cover" || BOX=="full" )
 difference()
 {
   box_cover(bbox=bbox);
-!  translate([(72-92)/2,0,16.4+7+2.5+12-5]) minkowski(){LEMO_PCB(minkowski=true);sphere(r=0.4,center=true);}
+  translate([(72-92)/2,0,16.4+7+2.5+12-5]) minkowski(){LEMO_PCB(minkowski=true);sphere(r=0.4,center=true);}
   //devices();
   serial(margin=0.25);
   i2c_header(bbox=true,margin=0.25);
