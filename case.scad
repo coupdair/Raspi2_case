@@ -12,15 +12,15 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.2.0e";
+version="v0.2.0f";
 
 ///bounding box
 bbox=false;
 //bbox=true;
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
-BOX="cover";
-//BOX="upper";
+//BOX="cover";
+BOX="upper";
 //BOX="middle";
 //BOX="lower";
 //BOX="projection";
@@ -526,7 +526,7 @@ if( BOX=="upper" || BOX=="full" )
 difference()
 {
   box_upper(bbox=bbox);
-  for(m=[-0.25,0.25]){translate([(65-85)/2  ,0,21+m]) WS_PoE_PCB();}
+  translate([(65-85)/2  ,0,21]) minkowski(){WS_PoE_PCB(minkowski=true);sphere(r=0.4,center=true);}
 }//difference
 }//upper box
 
