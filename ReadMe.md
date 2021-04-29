@@ -50,9 +50,9 @@ make only SLICE=[lower,middle,upper,cover] STL file
 
 ### high priority
 
+- . minkowski on PCB differences (instead of for(m... )
 - _ add temperature probe holer on lower box
 - . put oLED in projection (and PCB contours and hole only)
-- _ minkowski on PCB differences (instead of for(m... )
 
 ### medium priority
 

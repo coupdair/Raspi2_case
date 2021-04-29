@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.1.9";
+version="v0.2.0d";
 
 ///bounding box
 bbox=false;
@@ -510,7 +510,7 @@ if( BOX=="cover" || BOX=="full" )
 difference()
 {
   box_cover(bbox=bbox);
-//  for(m=[-0.25,0.25]){translate([(72-92)/2  ,0,16.4+7+2.5+12+m-5]) LEMO_PCB();}
+!  translate([(72-92)/2,0,16.4+7+2.5+12-5]) minkowski(){LEMO_PCB();sphere(r=0.4,center=true);}
   //devices();
   serial(margin=0.25);
   i2c_header(bbox=true,margin=0.25);
@@ -555,15 +555,12 @@ difference()
   pi4_USB23(bbox=true,margin=0.25,plug=12);
 }//base box
 
-//Devices
+///Devices
 devices();
-
-//PoE HAT
+///PoE HAT
 translate([(65-85)/2,0,21]) WS_PoE_PCB();
-//LEMO HAT
+///LEMO HAT
 LEMO_HAT(withHeader=true);
-
-//RPi4
+///RPi4
 pi4();
-
 }//base box, RPi and PCBs
