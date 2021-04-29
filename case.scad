@@ -510,7 +510,7 @@ if( BOX=="cover" || BOX=="full" )
 difference()
 {
   box_cover(bbox=bbox);
-!  translate([(72-92)/2,0,16.4+7+2.5+12-5]) minkowski(){LEMO_PCB();sphere(r=0.4,center=true);}
+!  translate([(72-92)/2,0,16.4+7+2.5+12-5]) minkowski(){LEMO_PCB(minkowski=true);sphere(r=0.4,center=true);}
   //devices();
   serial(margin=0.25);
   i2c_header(bbox=true,margin=0.25);
