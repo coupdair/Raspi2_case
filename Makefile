@@ -34,7 +34,10 @@ show_png:
 	display box_cover.png box_upper.png box_middle.png box_lower.png &
 
 projection: version
-	$(BIN) -D 'BOX="$@"' -o box_$@.stl $(DESIGN)
+	$(BIN) -D 'BOX="$@"' -o $@.dxf $(DESIGN)
+	$(BIN) -D 'BOX="$@"' -o $@.svg $(DESIGN)
+	@echo "librecad $@.dxf &"
+	@echo "inkscape $@.svg &"
 
 box: version full.png
 	mv box_full.png $@.png

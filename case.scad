@@ -16,7 +16,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.2.2e";
+version="v0.2.2f";
 
 ///bounding box
 bbox=false;
@@ -34,7 +34,7 @@ BOX="cover";
 //BOX="upper";
 //BOX="middle";
 //BOX="lower";
-//BOX="projection";
+BOX="projection";
 //BOX="full";
 
 //boundary box
