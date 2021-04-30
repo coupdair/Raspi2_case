@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.2.1j";
+version="v0.2.1k";
 
 ///bounding box
 bbox=false;
@@ -25,8 +25,8 @@ $fn=23;
 //$fn=75;
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
-//BOX="cover";
-BOX="upper";
+BOX="cover";
+//BOX="upper";
 //BOX="middle";
 //BOX="lower";
 //BOX="projection";
@@ -513,6 +513,7 @@ if( BOX=="cover" || BOX=="full" )
 {//cover box
 //  devices();
 //cover box
+if(PRINT==true) translate([0,0,42.9]) rotate([180,0,0])
 difference()
 {
   box_cover(bbox=bbox);
