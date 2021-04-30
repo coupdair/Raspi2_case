@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.2.1k";
+version="v0.2.1l";
 
 ///bounding box
 bbox=false;
@@ -20,7 +20,7 @@ bbox=false;
 
 //resolution
 PRINT=false;
-PRINT=true;
+//PRINT=true;
 $fn=23;
 //$fn=75;
 
@@ -28,7 +28,7 @@ $fn=23;
 BOX="cover";
 //BOX="upper";
 //BOX="middle";
-//BOX="lower";
+BOX="lower";
 //BOX="projection";
 //BOX="full";
 
@@ -544,16 +544,21 @@ if(PRINT==true) translate([0,0,-18.5])
 box_middle(bbox=bbox);
 }//middle box
 
-if( BOX=="lower" || BOX=="full" )
-{//lower box
-if(PRINT==true) translate([0,0,18.5]) rotate([180,0,0])
+module case_lower()
+{
 difference()
 {
   box_lower(bbox=bbox);
   pi4_Eth(bbox=true,margin=0.25,plug=12);
   pi4_USB23(bbox=true,margin=0.25,plug=12);
 }//difference
-}//lower box
+}//case_lower
+
+if( BOX=="lower" || BOX=="full" )
+{//lower layer
+if(PRINT==true) translate([0,0,18.5]) rotate([180,0,0]) case_lower();
+else  case_lower();
+}//lower layer
 
 if( BOX=="full" )
 {//base box, RPi and PCBs

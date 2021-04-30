@@ -46,7 +46,7 @@ make only SLICE=[lower,middle,upper,cover] STL file
 
 # DONE
 
-- . add make projection, make STL, ...
+- v add make projection, make STL, ...
 
 ## TODO
 
@@ -59,6 +59,7 @@ make only SLICE=[lower,middle,upper,cover] STL file
 
 - _ check sizes: USB, Eth, hole for oLED (PCB <-> cover box)
 - _ screwing procedure
+- _ add bars on a, o and e letters
 
 ### low priority
 
