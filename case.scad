@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.2.1f";
+version="v0.2.1h";
 
 ///bounding box
 bbox=false;
@@ -20,7 +20,7 @@ bbox=false;
 
 //resolution
 PRINT=false;
-//PRINT=true;
+PRINT=true;
 $fn=23;
 //$fn=75;
 
@@ -543,6 +543,7 @@ box_middle(bbox=bbox);
 
 if( BOX=="lower" || BOX=="full" )
 {//lower box
+if(PRINT==true) translate([0,0,18.5]) rotate([180,0,0])
 difference()
 {
   box_lower(bbox=bbox);
