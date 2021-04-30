@@ -16,7 +16,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.2.1";
+version="v0.2.2d";
 
 ///bounding box
 bbox=false;
@@ -24,12 +24,13 @@ bbox=false;
 
 //resolution
 PRINT=false;
-//PRINT=true;
+PRINT=true;
 $fn=23;
 //$fn=75;
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
-BOX="cover";
+BOX="buttons";
+//BOX="cover";
 //BOX="upper";
 //BOX="middle";
 //BOX="lower";
@@ -84,11 +85,11 @@ module lemo(l=17.5,r=3.5,b=7, x=9,y=16,z=33, dx=0,dy=0, dr=0)
   l: length
   h: height
 */
-module button(l=10,r=3,b=5,h=2.54,bh=1.23, x=-16,y=-12,z=33.5, dx=0,dy=0, dr=0)
+module button(l=10,r=3,b=5,h=2.54,bh=1.23, x=-16,y=-12,z=33.5, dx=0,dy=0, dr=0,dz=0)
 {
   r=r+dr;
   translate([x+dx,y+dy,z+h+bh]) cylinder(r=r, h=l-h-bh);
-  translate([x-b/2+dx,y-b/2+dy,z]) cube([b,b,h]);
+  translate([x-b/2+dx,y-b/2+dy,z+dz]) cube([b,b,h]);
 }//button
 
 //LED
@@ -489,13 +490,13 @@ difference()
 }//case_cover
 
 //devices
-module buttons(dr=0)
+module buttons(dr=0,dz=0)
 {
 //button();
-  button(dx=5,   dr=dr);
-  button(dx=-5,  dr=dr);
-  button(dx=15,  dr=dr);
-  button(dx=-15, dr=dr);
+  button(dx=5,   dr=dr,dz=dz);
+  button(dx=-5,  dr=dr,dz=dz);
+  button(dx=15,  dr=dr,dz=dz);
+  button(dx=-15, dr=dr,dz=dz);
 }//buttons
 
 module lemos(dr=0)
@@ -595,3 +596,8 @@ LEMO_HAT(withHeader=true);
 pi4();
 }//base box, RPi and PCBs
 
+if( BOX=="buttons")
+{//lower layer
+if(PRINT==true) translate([0,0,-37.3]) buttons(dz=3.75);
+else buttons(dz=3.75);
+}//lower layer

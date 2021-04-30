@@ -26,7 +26,7 @@ middle: version middle.png middle.stl
 
 lower:  version lower.png  lower.stl
 
-stl: version cover.stl upper.stl middle.stl lower.stl
+stl: version cover.stl upper.stl middle.stl lower.stl buttons.stl
 
 png: version cover.png upper.png middle.png lower.png
 
