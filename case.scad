@@ -16,7 +16,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.2.2g";
+version="v0.2.2h";
 
 ///bounding box
 bbox=false;
@@ -561,7 +561,7 @@ if(BOX=="projection")
     devices();
     //translate([100,0,0]) LEMO_PCB();
   }//projection
-  PCB_contour();
+  translate([(65-85)/2,0,0]) PCB_contour();
 }//projection render
 
 if( BOX=="cover" || BOX=="full" )
