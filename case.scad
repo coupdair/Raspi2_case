@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.2.1m";
+version="v0.2.1n";
 
 ///bounding box
 bbox=false;
@@ -25,8 +25,8 @@ $fn=23;
 //$fn=75;
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
-//BOX="cover";
-BOX="upper";
+BOX="cover";
+//BOX="upper";
 //BOX="middle";
 //BOX="lower";
 //BOX="projection";
@@ -465,6 +465,20 @@ module box_cover(w=72,h=62,d=10, t=2, bbox=true)
     if(bbox==true) %obox(w=72,d=d);
   }
 }//box_cover
+module case_cover()
+{
+difference()
+{
+  box_cover(bbox=bbox);
+  translate([(72-92)/2,0,16.4+7+2.5+12-5]) minkowski(){LEMO_PCB(minkowski=true);sphere(r=0.4,center=true);}
+  //devices();
+  serial(margin=0.25);
+  buttons(dr=0.25);
+  lemos(dr=0.25);
+  leds_soft(dr=0.25);
+  leds_hard(dr=0.25);
+}//difference
+}//case_cover
 
 //devices
 module buttons(dr=0)
@@ -528,34 +542,24 @@ if(BOX=="projection")
 }//projection render
 
 if( BOX=="cover" || BOX=="full" )
-{//cover box
+{//cover layer
 //  devices();
 //cover box
-if(PRINT==true) translate([0,0,42.9]) rotate([180,0,0])
-difference()
-{
-  box_cover(bbox=bbox);
-  translate([(72-92)/2,0,16.4+7+2.5+12-5]) minkowski(){LEMO_PCB(minkowski=true);sphere(r=0.4,center=true);}
-  //devices();
-  serial(margin=0.25);
-  buttons(dr=0.25);
-  lemos(dr=0.25);
-  leds_soft(dr=0.25);
-  leds_hard(dr=0.25);
-}//difference
-}//cover box
+if(PRINT==true) translate([0,0,42.9]) rotate([180,0,0]) case_cover();
+else case_cover();
+}//cover layer
 
 if( BOX=="upper" || BOX=="full" )
-{//upper box
+{//upper layer
 if(PRINT==true) translate([0,0,32.90]) rotate([180,0,0]) case_upper();
 else case_upper();
-}//upper box
+}//upper layer
 
 if( BOX=="middle" || BOX=="full" )
-{//middle box
+{//middle layer
 if(PRINT==true) translate([0,0,-18.5]) box_middle(bbox=bbox);
 else box_middle(bbox=bbox);
-}//middle box
+}//middle layer
 
 if( BOX=="lower" || BOX=="full" )
 {//lower layer
