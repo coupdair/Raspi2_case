@@ -16,7 +16,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.2.2d";
+version="v0.2.2e";
 
 ///bounding box
 bbox=false;
@@ -24,13 +24,13 @@ bbox=false;
 
 //resolution
 PRINT=false;
-PRINT=true;
+//PRINT=true;
 $fn=23;
 //$fn=75;
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
-BOX="buttons";
-//BOX="cover";
+//BOX="buttons";
+BOX="cover";
 //BOX="upper";
 //BOX="middle";
 //BOX="lower";

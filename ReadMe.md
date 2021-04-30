@@ -60,6 +60,7 @@ make only SLICE=[lower,middle,upper,cover] STL file
 - _ check sizes: USB, Eth, hole for oLED (PCB <-> cover box)
 - _ screwing procedure
 - _ add bars on a, o and e letters
+- _ add integrated buttons ?
 
 ### low priority
 
