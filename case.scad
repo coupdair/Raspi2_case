@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.2.1l";
+version="v0.2.1m";
 
 ///bounding box
 bbox=false;
@@ -25,10 +25,10 @@ $fn=23;
 //$fn=75;
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
-BOX="cover";
-//BOX="upper";
+//BOX="cover";
+BOX="upper";
 //BOX="middle";
-BOX="lower";
+//BOX="lower";
 //BOX="projection";
 //BOX="full";
 
@@ -171,6 +171,15 @@ module box_lower(w=92,h=62,d=7, t=2, tx=43,ty=11,tz=-2.5, bbox=true)
     if(bbox==true) %bbox(d=d);
   }
 }//box_lower
+module case_lower()
+{
+difference()
+{
+  box_lower(bbox=bbox);
+  pi4_Eth(bbox=true,margin=0.25,plug=12);
+  pi4_USB23(bbox=true,margin=0.25,plug=12);
+}//difference
+}//case_lower
 
 //column for screw
 /*
@@ -427,6 +436,15 @@ module box_upper(w=72,h=62,d=12, tx=36-0.25,ty=-7/2,tz=5, bbox=true)
     if(bbox==true) %obox(w=72,d=12);
   }
 }//box_upper
+module case_upper()
+{
+difference()
+{
+  box_upper(bbox=bbox);
+  i2c_header(bbox=true,margin=0.25);
+  translate([(65-85)/2  ,0,21]) minkowski(){WS_PoE_PCB(minkowski=true);sphere(r=0.4,center=true);}
+}//difference
+}//case_upper
 
 ///over box
 module box_cover(w=72,h=62,d=10, t=2, bbox=true)
@@ -529,30 +547,15 @@ difference()
 
 if( BOX=="upper" || BOX=="full" )
 {//upper box
-if(PRINT==true) translate([0,0,32.90]) rotate([180,0,0])
-difference()
-{
-  box_upper(bbox=bbox);
-  i2c_header(bbox=true,margin=0.25);
-  translate([(65-85)/2  ,0,21]) minkowski(){WS_PoE_PCB(minkowski=true);sphere(r=0.4,center=true);}
-}//difference
+if(PRINT==true) translate([0,0,32.90]) rotate([180,0,0]) case_upper();
+else case_upper();
 }//upper box
 
 if( BOX=="middle" || BOX=="full" )
 {//middle box
-if(PRINT==true) translate([0,0,-18.5])
-box_middle(bbox=bbox);
+if(PRINT==true) translate([0,0,-18.5]) box_middle(bbox=bbox);
+else box_middle(bbox=bbox);
 }//middle box
-
-module case_lower()
-{
-difference()
-{
-  box_lower(bbox=bbox);
-  pi4_Eth(bbox=true,margin=0.25,plug=12);
-  pi4_USB23(bbox=true,margin=0.25,plug=12);
-}//difference
-}//case_lower
 
 if( BOX=="lower" || BOX=="full" )
 {//lower layer
