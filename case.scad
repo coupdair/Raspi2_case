@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.2.1h";
+version="v0.2.1i";
 
 ///bounding box
 bbox=false;
@@ -27,8 +27,8 @@ $fn=23;
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="cover";
 //BOX="upper";
-//BOX="middle";
-BOX="lower";
+BOX="middle";
+//BOX="lower";
 //BOX="projection";
 //BOX="full";
 
@@ -538,6 +538,7 @@ difference()
 
 if( BOX=="middle" || BOX=="full" )
 {//middle box
+if(PRINT==true) translate([0,0,-18.5])
 box_middle(bbox=bbox);
 }//middle box
 
