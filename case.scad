@@ -12,7 +12,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.2.0";
+version="v0.2.1d";
 
 ///bounding box
 bbox=false;
@@ -110,7 +110,7 @@ module serial(w=3*2.5,h=2.5,d=14, space=-0.3, x=7.5+2*2.5-42.5,y=24.5,z=34.5, ma
   l: length
   h: height
 */
-module i2c_header(pins=3, rows=2, x=19,y=4.25-16,z=34.5+1, bbox=false, margin=0)
+module i2c_header(pins=3, rows=2, x=19,y=4.25-16,z=34.5+1-10, bbox=false, margin=0)
 {
   translate([x,y,z]) rotate([90,0,90]) header(pins, rows, bbox=bbox, margin=0);
 }//i2c_header
@@ -509,11 +509,10 @@ if( BOX=="cover" || BOX=="full" )
 //cover box
 difference()
 {
-  box_cover(bbox=bbox);
+%  box_cover(bbox=bbox);
   translate([(72-92)/2,0,16.4+7+2.5+12-5]) minkowski(){LEMO_PCB(minkowski=true);sphere(r=0.4,center=true);}
   //devices();
   serial(margin=0.25);
-  i2c_header(bbox=true,margin=0.25);
   buttons(dr=0.25);
   lemos(dr=0.25);
   leds_soft(dr=0.25);
@@ -523,9 +522,10 @@ difference()
 
 if( BOX=="upper" || BOX=="full" )
 {//upper box
-difference()
+%difference()
 {
   box_upper(bbox=bbox);
+  i2c_header(bbox=true,margin=0.25);
   translate([(65-85)/2  ,0,21]) minkowski(){WS_PoE_PCB(minkowski=true);sphere(r=0.4,center=true);}
 }//difference
 }//upper box
