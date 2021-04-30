@@ -20,9 +20,9 @@ bbox=false;
 
 //resolution
 PRINT=false;
-PRINT=true;
-if(PRINT==true) assign($fn=75);
-else assign($fn=23);
+//PRINT=true;
+$fn=23;
+//$fn=75;
 
 ///Box output (e.g. on CLI: -D 'BOX="bottom"')
 //BOX="cover";

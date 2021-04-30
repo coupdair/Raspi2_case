@@ -4,8 +4,10 @@ DESIGN=case.scad
 
 all: stl
 
-#%.stl: %.scad
-#	$(BIN) -o $@ $<
+%.stl:
+	$(BIN) -D 'BOX="$(basename $@)"' -D 'PRINT=true' -o box_$@ $(DESIGN)
+#	$(BIN) -D 'BOX="$(basename $@)"' -D 'PRINT=true' -D '$fn=75' -o box_$@ $(DESIGN)
+	@echo "blender box_$@ &"
 
 #need 2015.03
 %.png:
@@ -13,31 +15,18 @@ all: stl
 	@echo "display box_$@ &"
 
 version:
-	grep version case.scad | head -n 1 | cut -d'=' -f2 | sed "s/\"//g;s/;//g" | tee VERSION
-	openscad --version 2>&1 | cut -d' ' -f3 | tee -a VERSION
+	@grep version case.scad | head -n 1 | cut -d'=' -f2 | sed "s/\"//g;s/;//g" | tee VERSION
+	@openscad --version 2>&1 | cut -d' ' -f3 | tee -a VERSION
 
-cover: version cover.png
-	$(BIN) -D 'BOX="$@"' -o box_$@.stl $(DESIGN)
-	@echo "display $@.png &"
-	@echo "blender box.stl  &"
+cover:  version cover.png  cover.stl
 
-upper: version upper.png
-	$(BIN) -D 'BOX="$@"' -o box_$@.stl $(DESIGN)
-	@echo "display $@.png &"
-	@echo "blender box.stl  &"
+upper:  version upper.png  upper.stl
 
-middle: version middle.png
-	$(BIN) -D 'BOX="$@"' -o box_$@.stl $(DESIGN)
-	@echo "display $@.png &"
-	@echo "blender box.stl  &"
+middle: version middle.png middle.stl
 
-lower: version lower.png
-	$(BIN) -D 'BOX="$@"' -o box_$@.stl $(DESIGN)
-	@echo "display $@.png &"
-	@echo "blender box.stl  &"
+lower:  version lower.png  lower.stl
 
 stl: cover upper middle lower
-	make version
 
 projection: version
 	$(BIN) -D 'BOX="$@"' -o box_$@.stl $(DESIGN)
