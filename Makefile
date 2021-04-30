@@ -2,7 +2,7 @@ BIN=openscad
 VIEW_SIZE=512,512
 DESIGN=case.scad
 
-all: stl
+all: version cover upper middle lower
 
 %.stl:
 	$(BIN) -D 'BOX="$(basename $@)"' -D 'PRINT=true' -o box_$@ $(DESIGN)
@@ -26,7 +26,12 @@ middle: version middle.png middle.stl
 
 lower:  version lower.png  lower.stl
 
-stl: cover upper middle lower
+stl: version cover.stl upper.stl middle.stl lower.stl
+
+png: version cover.png upper.png middle.png lower.png
+
+show_png:
+	display box_cover.png box_upper.png box_middle.png box_lower.png &
 
 projection: version
 	$(BIN) -D 'BOX="$@"' -o box_$@.stl $(DESIGN)

@@ -5,6 +5,10 @@ multiple layer case
 - base: mimic alu. case-C (might be replaced by the WaveShare passive cooling box)
 - cover, upper, middle and lower box: each is a part of the stack (3D printed)
 
+- case_* is enclosure with holes for components
+- box_* is box hull
+- bbox is bounding box
+
 */
 
 ///use library.scad
@@ -12,7 +16,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.2.1n";
+version="v0.2.1";
 
 ///bounding box
 bbox=false;
@@ -416,6 +420,10 @@ module box_middle(w=72,h=62,d=2.5, t=2,c=6,s=2.75, x=(72-92)/2,y=0,z=16.4+7, bbo
     if(bbox==true) %bbox(w=w, d=d);
   }
 }//box_middle
+module case_middle()
+{
+  box_middle(bbox=bbox);
+}//case_middle
 
 ///upper box
 module box_upper(w=72,h=62,d=12, tx=36-0.25,ty=-7/2,tz=5, bbox=true)
@@ -557,8 +565,8 @@ else case_upper();
 
 if( BOX=="middle" || BOX=="full" )
 {//middle layer
-if(PRINT==true) translate([0,0,-18.5]) box_middle(bbox=bbox);
-else box_middle(bbox=bbox);
+if(PRINT==true) translate([0,0,-18.5]) case_middle();
+else case_middle();
 }//middle layer
 
 if( BOX=="lower" || BOX=="full" )
@@ -586,3 +594,4 @@ LEMO_HAT(withHeader=true);
 ///RPi4
 pi4();
 }//base box, RPi and PCBs
+
