@@ -36,13 +36,21 @@ make only SLICE=[lower,middle,upper,cover] STL file
 
 `make $SLICE`, e.g. `make cover`
 
-## foot print
+# foot print
 
 `make -j2 projection`
 
 or
 
 `make -j2 projection.svg projection.dxf`
+
+## dimensions
+
+![PCB with dimensions](2Dview_with_dimensions.png)
+
+![position of 40 pins header and oLED hole](2Dview_position_header_oLED.png)
+
+![position of 2 power LED, 4 LED, 4 button and 3 LEMOs](2Dview_position_LED_button_LEMO.png)
 
 # dev.
 
