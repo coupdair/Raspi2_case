@@ -16,7 +16,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.2.1";
+version="v0.2.2d";
 
 ///bounding box
 bbox=false;
@@ -454,7 +454,7 @@ difference()
 }//difference
 }//case_upper
 
-///over box
+///cover box
 module box_cover(w=72,h=62,d=10, t=2, bbox=true)
 {
   east=w/2;
@@ -479,6 +479,7 @@ difference()
 {
   box_cover(bbox=bbox);
   translate([(72-92)/2,0,16.4+7+2.5+12-5]) minkowski(){LEMO_PCB(minkowski=true);sphere(r=0.4,center=true);}
+  translate([0,0,21+12]) piB_header(bbox=true,margin=0.25);//see LEMO_HAT
   //devices();
   serial(margin=0.25);
   buttons(dr=0.25);
