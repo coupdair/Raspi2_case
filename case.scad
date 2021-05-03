@@ -16,7 +16,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.2.2f";
+version="v0.2.2i";
 
 ///bounding box
 bbox=false;
@@ -34,7 +34,7 @@ BOX="cover";
 //BOX="upper";
 //BOX="middle";
 //BOX="lower";
-//BOX="projection";
+BOX="projection";
 //BOX="full";
 
 //boundary box
@@ -542,13 +542,27 @@ color("green") leds_soft();
 color("orange") leds_hard();
 }//devices
 
+module PCB_projection()
+{
+  projection() LEMO_PCB();
+}
+module PCB_contour()
+{
+  difference()
+  {
+    offset( 0.25) PCB_projection();
+    offset(-0.25) PCB_projection();
+  }//diff.
+}
+
 if(BOX=="projection")
 {
   projection()
   {
     devices();
-    translate([100,0,0]) LEMO_PCB();
+    //translate([100,0,0]) LEMO_PCB();
   }//projection
+  translate([(65-85)/2,0,0]) PCB_contour();
 }//projection render
 
 if( BOX=="cover" || BOX=="full" )
