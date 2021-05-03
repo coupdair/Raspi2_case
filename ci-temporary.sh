@@ -9,4 +9,4 @@ ls ../*
 di=ci-temporary
 
 #dev. SCAD libs
-mv ./ci-temporary/library.scad .
+mv ./$di/library.scad ..
