@@ -24,6 +24,8 @@ rpi:
   script:
   ##imported repository
   - cd $CI_PROJECT_DIR
+#temporary
+  - ./ci-temporary.sh
   ##openscad (bin)
   - which openscad | tee which_openscad.txt
   - openscad --version 2>&1 | tee openscad_version.txt
