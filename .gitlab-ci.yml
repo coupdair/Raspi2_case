@@ -5,8 +5,8 @@ stages:
 
 #image: bbassett/openscad
 #image: jess/openscad ##BAD
-#image: owatte/openscad-gui
-image: openscad/appimage-x86_64-base
+image: owatte/openscad-gui
+#image: openscad/appimage-x86_64-base
 
 #image: d3v0x/blender-render-cluster
 #image: peterlauri/blender-python
