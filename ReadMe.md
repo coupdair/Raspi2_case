@@ -46,14 +46,16 @@ make only SLICE=[lower,middle,upper,cover] STL file
 
 # DONE
 
-- v add make projection, make STL, ...
+- v add PCB contours and hole in projection
+- v ContinuousIntegration for GitLab
+- v add header contour in projection
 
 ## TODO
 
 ### high priority
 
 - _ add temperature probe holer on lower box
-- . put oLED in projection (and PCB contours and hole only)
+- _ add oLED in projection
 
 ### medium priority
 
