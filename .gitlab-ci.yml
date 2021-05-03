@@ -54,8 +54,8 @@ rpi:
     - box_upper.stl
     - box_middle.stl
     - box_lower.stl
-    - 2Dview.svg
-    - 2Dview.dxf
+    - box_projection.svg
+    - box_projection.dxf
 #    - 0001.png
 #    - /tmp/0001.png  #FAIL
 
