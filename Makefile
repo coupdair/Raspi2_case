@@ -9,6 +9,14 @@ all: version cover upper middle lower
 #	$(BIN) -D 'BOX="$(basename $@)"' -D 'PRINT=true' -D '$fn=75' -o box_$@ $(DESIGN)
 	@echo "blender box_$@ &"
 
+%.dxf:
+	$(BIN) -D 'BOX="$(basename $@)"' -o box_$@ $(DESIGN)
+	@echo "librecad box_$@ &"
+
+%.svg:
+	$(BIN) -D 'BOX="$(basename $@)"' -o box_$@ $(DESIGN)
+	@echo "inkscape box_$@ &"
+
 #need 2015.03
 %.png:
 	$(BIN) --render --imgsize=$(VIEW_SIZE) -D 'BOX="$(basename $@)"' -o box_$@ $(DESIGN)
@@ -33,11 +41,7 @@ png: version cover.png upper.png middle.png lower.png
 show_png:
 	display box_cover.png box_upper.png box_middle.png box_lower.png &
 
-projection: version
-	$(BIN) -D 'BOX="$@"' -o box_$@.dxf $(DESIGN)
-	$(BIN) -D 'BOX="$@"' -o box_$@.svg $(DESIGN)
-	@echo "librecad box_$@.dxf &"
-	@echo "inkscape box_$@.svg &"
+projection: version projection.svg projection.dxf
 
 box: version full.png
 	mv box_full.png $@.png

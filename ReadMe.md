@@ -26,11 +26,9 @@ Raspberry Pi4 case in openscad
 
 ## all
 
-TODO
-
 make STL files
 
-`make`
+`make -j4 stl`
 
 ## stack
 
@@ -40,7 +38,11 @@ make only SLICE=[lower,middle,upper,cover] STL file
 
 ## foot print
 
-`make projection`
+`make -j2 projection`
+
+or
+
+`make -j2 projection.svg projection.dxf`
 
 # dev.
 
