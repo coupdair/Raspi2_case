@@ -6,7 +6,7 @@
 $fn=100;
 
 ///Version
-version="v0.2.2d";
+version="v0.2.2e";
 
 // Which one would you like to see?
 part = "pi4"; // [pi3:Raspberry PI3,hifiberryDacPlus:HifiBerry DAC+,pi3_hifiberryDacPlus:Raspberry PI3 & HifiBerry DAC+,piZero:Raspberry PI Zero,speakerPhat:Pimoroni Speaker pHAT,pi4:Raspberry PI4]
@@ -32,7 +32,7 @@ module header(pins, rows, bbox=false, margin=0)
 }//header
 
 //Pi B header 20x2 pins (for RPi2-4 and its HATs)
-module piB_header(bbox=bbox, margin=0);)
+module piB_header(bbox=bbox, margin=0)
 {
   translate([3.5-85/2+29-10*2.54,49/2-2.54,1.4])
   header(20,2, bbox, margin);
