@@ -34,7 +34,8 @@ show_png:
 	display box_cover.png box_upper.png box_middle.png box_lower.png &
 
 projection: version
-	$(BIN) -D 'BOX="$@"' -o box_$@.stl $(DESIGN)
+	$(BIN) -D 'BOX="$@"' -o box_$@.svg $(DESIGN)
+	$(BIN) -D 'BOX="$@"' -o box_$@.dxf $(DESIGN)
 
 box: version full.png
 	mv box_full.png $@.png
