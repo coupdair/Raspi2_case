@@ -16,7 +16,7 @@ multiple layer case
 use <../library.scad/raspberrypi.scad>
 
 ///Version
-version="v0.2.2k";
+version="v0.2.2l";
 
 ///bounding box
 bbox=false;
@@ -551,7 +551,7 @@ module PCB_contour()
   difference()
   {
     offset( 0.25) PCB_projection();
-    offset(-0.25) PCB_projection();
+    PCB_projection();
   }//diff.
 }//PCB_contour
 
@@ -564,7 +564,7 @@ module header_contour()
   difference()
   {
     offset( 0.25) header_projection();
-    offset(-0.25) header_projection();
+    header_projection();
   }//diff.
 }//header_contour
 
