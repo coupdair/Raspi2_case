@@ -14,6 +14,8 @@ di=ci-temporary
 li=library.scad
 if [ "$update" == "" ]
 then
+  #clean
+  rm -fr ../$li/
   #move (in docker image)
   mv ./$di/$li ../
   ls ../$li/

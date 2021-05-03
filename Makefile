@@ -45,3 +45,7 @@ box: version full.png
 
 design:
 	openscad case.scad &
+
+#CI temporary
+update:
+	./ci-temporary.sh update
