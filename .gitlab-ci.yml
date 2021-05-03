@@ -37,7 +37,7 @@ rpi:
 #  - blender --version
   ##make all design
   - rm -f *.png *.stl *.dxf *.svg
-  - make all projection box
+  - make stl projection box
 #  - blender --background  basic.blend -noaudio --render-frame 1
   - ls
 #  - ls /tmp/
