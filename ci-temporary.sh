@@ -18,6 +18,7 @@ then
   rm -fr ../$li/
   #move (in docker image)
   mv ./$di/$li ../
+  echo $li' :'
   ls ../$li/
   #update version
   cd ../$li/; make version
