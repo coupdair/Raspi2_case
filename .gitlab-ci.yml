@@ -24,6 +24,8 @@ rpi:
   script:
   ##imported repository
   - cd $CI_PROJECT_DIR
+#temporary
+  - ./ci-temporary.sh
   ##openscad (bin)
   - which openscad | tee which_openscad.txt
   - openscad --version 2>&1 | tee openscad_version.txt
@@ -34,8 +36,8 @@ rpi:
 #  - which blender > which_blender.txt
 #  - blender --version
   ##make all design
-  - rm -f *.png *.stl
-  - make all
+  - rm -f *.png *.stl *.dxf *.svg
+  - make all projection box
 #  - blender --background  basic.blend -noaudio --render-frame 1
   - ls
 #  - ls /tmp/
@@ -48,8 +50,12 @@ rpi:
     - which_openscad.txt
     - openscad_version.txt
 #    - which_blender.txt
-    - box_TOP.stl
-    - box_bottom.stl
+    - box_cover.stl
+    - box_upper.stl
+    - box_middle.stl
+    - box_lower.stl
+    - 2Dview.svg
+    - 2Dview.dxf
 #    - 0001.png
 #    - /tmp/0001.png  #FAIL
 

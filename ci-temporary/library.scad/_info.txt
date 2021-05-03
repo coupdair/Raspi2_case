@@ -1,0 +1,2 @@
+https://www.thingiverse.com/thing:2023897/files
+https://github.com/saarbastler/library.scad/blob/master/doc/raspberrypi.md
