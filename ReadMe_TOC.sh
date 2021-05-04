@@ -4,7 +4,7 @@
 #usage: ./ReadMe_TOC.sh
 #usage: ./ReadMe_TOC.sh > ReadMe_TOC.md; cat ReadMe_TOC.md ReadMe.md > ReadMe_with_TOC.md; mv ReadMe_with_TOC.md ReadMe.md
 
-version="v0.0.3"
+version="v0.0.4"
 
 #TODO: replace previous TOC by new one (e.g. using [begin,end]@of@TOC marker as TOC paragraph)
 
@@ -29,7 +29,7 @@ do
   k=`echo "$l" | sed 's/# /#@/;s/  / /g;s/  / /g;s/  / /g;s/ /-/g;s/\.//g' | tr [:upper:] [:lower:]`
 #echo "$t $k"
   #gather
-  /bin/echo -e -n $k | sed "s/@/@[$t](/" | sed 's/#@/# /;s/###/          -/;s/##/     -/;s/#/1./;'
+  /bin/echo -e -n $k | sed "s/@/@[$t](/" | sed 's/#@/# /;s/###/          1./;s/##/     1./;s/#/1./;'
   echo ')'
 done < $ft | sed 's/(/(\#/'
 
