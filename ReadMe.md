@@ -54,7 +54,7 @@ or
 
 # dev.
 
-# DONE
+## DONE
 
 - v add PCB contours and hole in projection
 - v ContinuousIntegration for GitLab
@@ -81,4 +81,4 @@ or
 
 ## BUG
 
-- OpenSCAD 2015.03: after many F5 render, empty render, but F6 is ok, reload OpenSCAD !
+- o OpenSCAD 2015.03: after many F5 render, empty render, but F6 is ok, reload OpenSCAD !
