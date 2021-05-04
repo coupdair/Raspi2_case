@@ -8,6 +8,7 @@
      1. [stack](#stack)
 1. [foot print](#foot-print)
      1. [dimensions](#dimensions)
+     1. [PoE-HAT-B dimensions](#poe-hat-b-dimensions)
 1. [dev.](#dev)
      1. [DONE](#done)
      1. [TODO](#todo)
