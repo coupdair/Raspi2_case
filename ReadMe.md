@@ -1,3 +1,21 @@
+<!--- begin@of@TOC --->
+# Table of contents
+
+-  [RPi4_case](#rpi4_case)
+-  [design](#design)
+-  [print](#print)
+     -  [all](#all)
+     -  [stack](#stack)
+-  [foot print](#foot-print)
+     -  [dimensions](#dimensions)
+-  [dev.](#dev)
+     -  [DONE](#done)
+     -  [TODO](#todo)
+          -  [high priority](#high-priority)
+          -  [medium priority](#medium-priority)
+          -  [low priority](#low-priority)
+     -  [BUG](#bug)
+<!--- end@of@TOC --->
 # RPi4_case
 
 Raspberry Pi4 case in openscad
