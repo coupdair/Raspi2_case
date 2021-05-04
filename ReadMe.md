@@ -71,6 +71,11 @@ or
 
 ![position of 2 power LED, 4 LED, 4 button and 3 LEMOs](2Dview_position_LED_button_LEMO.png)
 
+
+## PoE-HAT-B dimensions
+
+![PCB and components with dimensions](PoE-HAT-B-details-15.jpg)
+
 # dev.
 
 ## DONE
