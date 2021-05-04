@@ -4,11 +4,11 @@ f=ReadMe.md
 ft=`basename $0 .sh`.tmp
 
 #get TOC
-grep '# ' $f | grep -v '(#' > $ft
+grep '# ' $f | grep -v '(#' | grep -v '# Table of contents' > $ft
 
 #header
 echo '<!--- begin@of@TOC --->'
-echo 'Table of contents'
+echo '# Table of contents'
 echo
 
 #make MarkDown links
