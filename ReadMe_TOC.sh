@@ -1,11 +1,13 @@
 #!/bin/bash
 
 #create the TOC (i.e. Table Of Contents) of a MarkDown file
-#TODO: replace previous TOC by new one (e.g. using [begin,end]@of@TOC marker as TOC paragraph)
 #usage: ./ReadMe_TOC.sh
 #usage: ./ReadMe_TOC.sh > ReadMe_TOC.md; cat ReadMe_TOC.md ReadMe.md > ReadMe_with_TOC.md; mv ReadMe_with_TOC.md ReadMe.md
 
 version="v0.0.1"
+
+#TODO: replace previous TOC by new one (e.g. using [begin,end]@of@TOC marker as TOC paragraph)
+#TODO: setup numbering instead of dots, e.g. "1.2.3." instead of "          - "
 
 f=ReadMe.md
 ft=`basename $0 .sh`.tmp
