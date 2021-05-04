@@ -4,9 +4,10 @@ f=ReadMe.md
 ft=`basename $0 .sh`.tmp
 
 #get TOC
-grep '# ' $f > $ft
+grep '# ' $f | grep -v '(#' > $ft
 
 #header
+echo '<!--- begin@of@TOC --->'
 echo 'Table of contents'
 echo
 
@@ -27,6 +28,7 @@ do
 done < $ft | sed 's/(/(\#/'
 
 #footer
+echo '<!--- end@of@TOC --->'
 
 #clean
 rm $ft
